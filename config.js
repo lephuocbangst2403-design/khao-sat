@@ -1,6 +1,7 @@
 /* =====================================================================
    CẤU HÌNH KHẢO SÁT. Chỉ sửa file này, không cần sửa index.html.
    Sửa xong bấm "Commit changes" trên GitHub; khoảng 1 phút sau link tự cập nhật.
+   Chữ trong ngoặc vuông [ ] hiện trên trang thành ô vàng: đó là chỗ chưa điền.
    Giữ nguyên dấu ngoặc kép "..." và dấu phẩy ở cuối mỗi dòng.
    ===================================================================== */
 window.SURVEY_CONFIG = {
@@ -28,14 +29,18 @@ window.SURVEY_CONFIG = {
   },
   COMPLETION_CODE: "",
 
-  /* 4. Thông tin trên trang đồng ý tham gia. */
+  /* 4. Thông tin trên trang đồng ý tham gia.
+        Ô nào để trống "" thì câu tương ứng tự ẩn khỏi trang đồng ý.
+        Chỉ điền ETHICS_BOARD và ETHICS_NO khi đã có quyết định phê duyệt thật. */
   ORG: "Trường Đại Học Tôn Đức Thắng",
   RESEARCHER: "Lê Phước Bằng",
   EMAIL: "lephuocbang.st@tdtu.edu.vn",
   STORAGE_PLACE: "Google Drive của nhóm nghiên cứu",
-  STORAGE_TIME: "[thời gian lưu trữ, ví dụ 5 năm]",
-  INCENTIVE: "[mức và hình thức thù lao]",
-  STOP_RULE: "[quy định thù lao khi dừng giữa chừng]",
+  STORAGE_TIME: "",   // ví dụ "5 năm". Trống: ẩn đoạn "trong ... rồi xóa"
+  INCENTIVE: "",      // ví dụ "voucher 20.000đ gửi qua email". Trống: ẩn dòng "Thù lao"
+  STOP_RULE: "",      // ví dụ "Dừng giữa chừng vẫn nhận đủ thù lao." Trống: không hiện gì
+  ETHICS_BOARD: "",   // ví dụ "Hội đồng Đạo đức trong nghiên cứu, Trường ĐH Tôn Đức Thắng". Trống: ẩn câu "đã được phê duyệt"
+  ETHICS_NO: "",      // số quyết định phê duyệt
 
   /* 5. Study 1: danh sách chuỗi bán lẻ. v là mã số trong dữ liệu (1, 2, 3...).
         cat: 1 = điện máy, 2 = nhà thuốc, 3 = mỹ phẩm, 4 = siêu thị. */

@@ -197,13 +197,15 @@ const PRODUCTS={
 };
 const BLOCK_LINE="Gợi ý này chỉ dựa trên các sản phẩm bạn đã xem trong app. Chuỗi A không dùng lịch sử mua tại cửa hàng để gợi ý.";
 const PROFILE_TXT={0:"sữa thực vật không đường, yến mạch nguyên chất và đồ ăn sáng ít đường",1:"sữa tươi, ngũ cốc ăn sáng và bánh mì sandwich"};
+const cfgOn=k=>String(CFG[k]??"").trim()!=="";
+const cfgIf=t=>{let o;do{o=t;t=t.replace(/\{IF:(\w+)\}([\s\S]*?)\{\/IF:\1\}/g,(m,k,x)=>cfgOn(k)?x:"")}while(t!==o);return t};
 const cfgv=k=>{const v=String(CFG[k]??"");return v.startsWith("[")?`<span class="ph">${esc(v)}</span>`:esc(v)};
 function chainOf(s){return CHAINS.find(c=>c.v===s.emb.RETAILER)}
 function fmt(s,t){
   const ch=chainOf(s);
   const A=ch?esc(ch.name):"chuỗi bạn đã chọn";
   const NH=ch&&CATS[ch.cat]?CATS[ch.cat].nh:"sản phẩm của chuỗi";
-  return String(t).replace(/\{A\}/g,A).replace(/\{NH\}/g,NH).replace(/\{CFG:(\w+)\}/g,(m,k)=>cfgv(k));
+  return cfgIf(String(t)).replace(/\{A\}/g,A).replace(/\{NH\}/g,NH).replace(/\{CFG:(\w+)\}/g,(m,k)=>cfgv(k));
 }
 const code=c=>`<span class="code">${esc(c)}</span>`;
 function shuffle(n){const a=[...Array(n).keys()];for(let i=n-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -315,10 +317,10 @@ const DEMO=[
 ];
 const CONSENT1=`<div class="prose"><h1 class="st">Khảo sát về trải nghiệm mua sắm và gợi ý sản phẩm tại các chuỗi bán lẻ</h1>
 <p style="margin-top:12px">Xin chào! Chúng tôi là nhóm nghiên cứu của {CFG:ORG}. Khảo sát tìm hiểu trải nghiệm của khách khi mua sắm ở các chuỗi bán lẻ qua cả cửa hàng và app, và cảm nhận của khách về các gợi ý sản phẩm, ưu đãi mà chuỗi gửi.</p>
-<ul><li>Thời gian: khoảng 15 phút.</li><li>Tham gia là tự nguyện. Bạn có thể dừng bất cứ lúc nào mà không cần giải thích. {CFG:STOP_RULE}</li><li>Khảo sát không hỏi họ tên, số điện thoại, email hay mã thành viên của bạn. Câu trả lời chỉ dùng cho nghiên cứu, được phân tích ở dạng tổng hợp, lưu trữ an toàn trên {CFG:STORAGE_PLACE} trong {CFG:STORAGE_TIME} rồi xóa.</li><li>Không có câu trả lời đúng hay sai. Hãy trả lời theo trải nghiệm thật của bạn.</li><li>Khảo sát không có rủi ro đáng kể. Nếu thấy câu hỏi nào không thoải mái, bạn có thể dừng.</li><li>Thù lao: {CFG:INCENTIVE}.</li><li>Nghiên cứu đã được {CFG:ETHICS_BOARD} phê duyệt, số {CFG:ETHICS_NO}. Thắc mắc xin liên hệ {CFG:RESEARCHER}, {CFG:EMAIL}.</li></ul></div>`;
+<ul><li>Thời gian: khoảng 15 phút.</li><li>Tham gia là tự nguyện. Bạn có thể dừng bất cứ lúc nào mà không cần giải thích.{IF:STOP_RULE} {CFG:STOP_RULE}{/IF:STOP_RULE}</li><li>Khảo sát không hỏi họ tên, số điện thoại, email hay mã thành viên của bạn. Câu trả lời chỉ dùng cho nghiên cứu, được phân tích ở dạng tổng hợp, lưu trữ an toàn trên {CFG:STORAGE_PLACE}{IF:STORAGE_TIME} trong {CFG:STORAGE_TIME} rồi xóa{/IF:STORAGE_TIME}.</li><li>Không có câu trả lời đúng hay sai. Hãy trả lời theo trải nghiệm thật của bạn.</li><li>Khảo sát không có rủi ro đáng kể. Nếu thấy câu hỏi nào không thoải mái, bạn có thể dừng.</li>{IF:INCENTIVE}<li>Thù lao: {CFG:INCENTIVE}.</li>{/IF:INCENTIVE}<li>{IF:ETHICS_BOARD}Nghiên cứu đã được {CFG:ETHICS_BOARD} phê duyệt{IF:ETHICS_NO}, số {CFG:ETHICS_NO}{/IF:ETHICS_NO}. {/IF:ETHICS_BOARD}Thắc mắc xin liên hệ {CFG:RESEARCHER}, {CFG:EMAIL}.</li></ul></div>`;
 const CONSENT23=`<div class="prose"><h1 class="st">Khảo sát về cách khách hàng nhìn nhận gợi ý sản phẩm trên app bán lẻ</h1>
 <p style="margin-top:12px">Xin chào! Chúng tôi là nhóm nghiên cứu của {CFG:ORG}. Bạn sẽ đọc một tình huống mua sắm giả định, xem một màn hình app, rồi trả lời câu hỏi về cảm nhận của bạn.</p>
-<ul><li>Thời gian: khoảng 10 phút.</li><li>Tham gia là tự nguyện; bạn có thể dừng bất cứ lúc nào. {CFG:STOP_RULE}</li><li>Khảo sát không hỏi họ tên, số điện thoại hay email. Câu trả lời chỉ dùng cho nghiên cứu, phân tích ở dạng tổng hợp, lưu trữ an toàn trên {CFG:STORAGE_PLACE} trong {CFG:STORAGE_TIME} rồi xóa.</li><li>Không có câu trả lời đúng hay sai. Khảo sát không có rủi ro đáng kể.</li><li>Ở cuối khảo sát, chúng tôi sẽ giải thích thêm về mục đích nghiên cứu.</li><li>Thù lao: {CFG:INCENTIVE}.</li><li>Nghiên cứu đã được {CFG:ETHICS_BOARD} phê duyệt, số {CFG:ETHICS_NO}. Liên hệ: {CFG:RESEARCHER}, {CFG:EMAIL}.</li></ul></div>`;
+<ul><li>Thời gian: khoảng 10 phút.</li><li>Tham gia là tự nguyện; bạn có thể dừng bất cứ lúc nào.{IF:STOP_RULE} {CFG:STOP_RULE}{/IF:STOP_RULE}</li><li>Khảo sát không hỏi họ tên, số điện thoại hay email. Câu trả lời chỉ dùng cho nghiên cứu, phân tích ở dạng tổng hợp, lưu trữ an toàn trên {CFG:STORAGE_PLACE}{IF:STORAGE_TIME} trong {CFG:STORAGE_TIME} rồi xóa{/IF:STORAGE_TIME}.</li><li>Không có câu trả lời đúng hay sai. Khảo sát không có rủi ro đáng kể.</li><li>Ở cuối khảo sát, chúng tôi sẽ giải thích thêm về mục đích nghiên cứu.</li>{IF:INCENTIVE}<li>Thù lao: {CFG:INCENTIVE}.</li>{/IF:INCENTIVE}<li>{IF:ETHICS_BOARD}Nghiên cứu đã được {CFG:ETHICS_BOARD} phê duyệt{IF:ETHICS_NO}, số {CFG:ETHICS_NO}{/IF:ETHICS_NO}. {/IF:ETHICS_BOARD}Liên hệ: {CFG:RESEARCHER}, {CFG:EMAIL}.</li></ul></div>`;
 const consentQ=single("CONSENT","Tôi đã đọc thông tin trên và đồng ý tham gia.",[[1,"Đồng ý"],[0,"Không đồng ý"]]);
 
 /* ================= Study 1 ================= */
