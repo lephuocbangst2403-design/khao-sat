@@ -9,10 +9,10 @@ window.SURVEY_CONFIG = {
         Mỗi study một mã riêng để dữ liệu nằm ở thư mục riêng.
         "1-pilot" là mã cho pilot Study 1 (link có &mode=pilot). */
   DATAPIPE_ID: {
-    "1": "",
-    "1-pilot": "",
-    "2": "",
-    "3": ""
+    "1": "U3r90P0jX4Zl",
+    "1-pilot": "nFaHR6QBZ8Zg",
+    "2": "ofd6wmg9DfH1",
+    "3": "GtVOi0QBDrUz"
   },
 
   /* 2. Tên tham số chứa mã người tham gia trên link panel.
@@ -29,11 +29,9 @@ window.SURVEY_CONFIG = {
   COMPLETION_CODE: "",
 
   /* 4. Thông tin trên trang đồng ý tham gia. */
-  ORG: "[Tên trường/viện]",
-  ETHICS_BOARD: "[Hội đồng đạo đức]",
-  ETHICS_NO: "[số phê duyệt]",
-  RESEARCHER: "[Tên nghiên cứu viên]",
-  EMAIL: "[email]",
+  ORG: "Trường Đại Học Tôn Đức Thắng",
+  RESEARCHER: "Lê Phước Bằng",
+  EMAIL: "lephuocbang.st@tdtu.edu.vn",
   STORAGE_PLACE: "Google Drive của nhóm nghiên cứu",
   STORAGE_TIME: "[thời gian lưu trữ, ví dụ 5 năm]",
   INCENTIVE: "[mức và hình thức thù lao]",
