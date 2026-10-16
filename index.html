@@ -1,41 +1,69 @@
-<!doctype html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
-<title>Khảo sát nghiên cứu</title>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Bảng hỏi Study 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
+/* Layout: a researcher toolbar band on top, then one centred survey sheet (max 760px) like a real survey platform page.
+   The app mock-ups are fixed-colour "screenshots" so they look identical in both themes. */
 :root{
   --bg:#ECF1F2; --surface:#FFFFFF; --surface-2:#F4F7F8; --ink:#16232A; --muted:#56676F; --line:#D3DDE1;
   --accent:#1D5E77; --accent-ink:#FFFFFF; --accent-soft:#E0EDF2; --focus:#2C83A6;
-  --danger:#A8291F; --ph-bg:#FFF1BF; --ph-ink:#5E4600; --test:#7A4B00; --test-bg:#FFE7A8;
+  --danger:#A8291F; --danger-soft:#FBEAE7; --ok:#22704A;
+  --ph-bg:#FFF1BF; --ph-ink:#5E4600;
+  --bar:#18262D; --bar-2:#22343C; --bar-ink:#E7EEF0; --bar-muted:#9CB0B8; --bar-line:#33474F; --bar-accent:#7CC4DE;
   --app-brand:#5E3768; --app-bg:#F5F3F6; --app-card:#FFFFFF; --app-ink:#1E1A21; --app-muted:#6E6873; --app-line:#E5E0E7;
   --app-price:#B3361F; --app-info-bg:#ECEFF2; --app-info-ink:#353C43; --app-frame:#121416;
-  --f-ui:"Be Vietnam Pro","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --f-code:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
-  color-scheme:light;
+  --f-ui:"Be Vietnam Pro", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --f-code:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark){
-  :root{--bg:#0E1417;--surface:#162026;--surface-2:#1B2830;--ink:#E3EBEE;--muted:#98A9B1;--line:#2A3A42;
-    --accent:#6DB5D1;--accent-ink:#0A1A20;--accent-soft:#1C3440;--focus:#8FD0E8;--danger:#F08A80;
-    --ph-bg:#4A3B0C;--ph-ink:#FFE38F;--test:#FFE38F;--test-bg:#4A3B0C;color-scheme:dark}
+  :root:not([data-theme="light"]){
+    --bg:#0E1417; --surface:#162026; --surface-2:#1B2830; --ink:#E3EBEE; --muted:#98A9B1; --line:#2A3A42;
+    --accent:#6DB5D1; --accent-ink:#0A1A20; --accent-soft:#1C3440; --focus:#8FD0E8;
+    --danger:#F08A80; --danger-soft:#3A1E1B; --ok:#7FD0A6;
+    --ph-bg:#4A3B0C; --ph-ink:#FFE38F;
+    --bar:#0A1114; --bar-2:#132027; --bar-line:#24343B;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1417; --surface:#162026; --surface-2:#1B2830; --ink:#E3EBEE; --muted:#98A9B1; --line:#2A3A42;
+  --accent:#6DB5D1; --accent-ink:#0A1A20; --accent-soft:#1C3440; --focus:#8FD0E8;
+  --danger:#F08A80; --danger-soft:#3A1E1B; --ok:#7FD0A6;
+  --ph-bg:#4A3B0C; --ph-ink:#FFE38F;
+  --bar:#0A1114; --bar-2:#132027; --bar-line:#24343B;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
-[hidden]{display:none!important}
-img{max-width:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55}
 button,select,input,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.testbar{background:var(--test-bg);color:var(--test);font-size:13px;font-weight:600;text-align:center;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px))}
+
+/* ---------- researcher toolbar ---------- */
+.rbar{background:var(--bar);color:var(--bar-ink);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 10px}
+.rbar-in{max-width:1120px;margin:0 auto;display:grid;gap:10px}
+.rrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.rtitle{font-weight:600;font-size:14px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-right:auto}
+.rtitle small{font-weight:400;color:var(--bar-muted);font-size:12.5px}
+.seg{display:inline-flex;background:var(--bar-2);border:1px solid var(--bar-line);border-radius:8px;padding:2px}
+.seg button{border:0;background:transparent;color:var(--bar-muted);padding:5px 11px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--bar-ink);color:var(--bar)}
+.fld{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--bar-muted)}
+.fld select{background:var(--bar-2);color:var(--bar-ink);border:1px solid var(--bar-line);border-radius:6px;padding:4px 6px;font-size:13px;max-width:62vw}
+.tg{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--bar-muted);cursor:pointer}
+.tg input{accent-color:var(--bar-accent)}
+.rbtn{background:transparent;border:1px solid var(--bar-line);color:var(--bar-ink);border-radius:6px;padding:4px 10px;font-size:12.5px;cursor:pointer}
+.rbtn:hover{border-color:var(--bar-muted)}
+.chip{font-family:var(--f-code);font-size:11.5px;background:var(--bar-2);border:1px solid var(--bar-line);color:var(--bar-accent);padding:2px 8px;border-radius:999px}
+.conds{display:contents}
+
+/* ---------- survey sheet ---------- */
 main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 48px}
 .sheet{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .sh-top{padding:14px 22px 0;display:grid;gap:10px}
-.org{font-size:12.5px;color:var(--muted)}
+.org{font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .prog{height:6px;background:var(--surface-2);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
 .prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
 .sh-body{padding:18px 22px 6px;display:grid;gap:18px}
@@ -44,27 +72,31 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 .next{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:10px 26px;font-weight:600;font-size:15px;cursor:pointer;min-width:120px}
 .next[disabled]{opacity:.45;cursor:not-allowed}
 h1.st{font-size:20px;line-height:1.3;margin:0;text-wrap:balance}
-h2.pt{font-size:17px;margin:0;text-wrap:balance}
+h2.pt{font-size:16.5px;margin:0;text-wrap:balance}
 .lead{margin:0}
 .intro{margin:0;padding:12px 14px;background:var(--surface-2);border-radius:8px;border:1px solid var(--line)}
 .prose p{margin:0 0 10px}.prose p:last-child{margin-bottom:0}
 .prose ul{margin:0;padding-left:20px;display:grid;gap:6px}
-.ph{background:var(--ph-bg);color:var(--ph-ink);border-radius:4px;padding:0 4px;font-weight:500}
-.code{font-family:var(--f-code);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:8px;white-space:nowrap}
-body:not(.test) .code,body:not(.test) .rnote{display:none}
+.ph{background:var(--ph-bg);color:var(--ph-ink);border-radius:4px;padding:0 4px;font-weight:500;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.code{font-family:var(--f-code);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:8px;white-space:nowrap;vertical-align:1px}
+body:not(.show-codes) .code{display:none}
 .rnote{font-size:12.5px;color:var(--muted);border-left:3px solid var(--line);padding:2px 0 2px 10px}
+body:not(.show-codes) .rnote{display:none}
+
 fieldset.q{border:0;margin:0;padding:0;min-width:0}
 fieldset.q legend{padding:0;margin:0 0 10px;font-weight:500;width:100%}
 .q + .q{border-top:1px dashed var(--line);padding-top:16px}
 .q.err legend{color:var(--danger)}
 .q .emsg{display:none;font-size:13px;color:var(--danger);margin-top:8px}
 .q.err .emsg{display:block}
+
+/* likert / frequency rows */
 .scale{display:grid;gap:6px}
 .scale.n7{grid-template-columns:repeat(7,minmax(0,1fr))}
 .scale.n5{grid-template-columns:repeat(5,minmax(0,1fr))}
 .opt{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:8px 4px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--surface);font-size:12px;line-height:1.3;color:var(--muted)}
 .opt input{position:absolute;opacity:0;pointer-events:none}
-.opt .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--muted)}
+.opt .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--muted);display:grid;place-items:center}
 .opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
 .opt:has(input:checked) .dot{border-color:var(--accent);background:radial-gradient(var(--accent) 0 45%,transparent 50%)}
 .opt:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:2px}
@@ -74,8 +106,9 @@ fieldset.q legend{padding:0;margin:0 0 10px;font-weight:500;width:100%}
   .opt{flex-direction:row;justify-content:flex-start;text-align:left;padding:9px 12px;gap:10px;font-size:13.5px}
   .opt .num{order:3;margin-left:auto}
 }
+/* single / multi lists */
 .list{display:grid;gap:6px}
-.li{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--surface);flex-wrap:wrap}
+.li{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--surface)}
 .li input{margin-top:4px;accent-color:var(--accent)}
 .li:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
 .li .othr{margin-left:auto;flex:1 1 140px;min-width:0;border:1px solid var(--line);border-radius:6px;padding:4px 8px;background:var(--surface)}
@@ -83,12 +116,14 @@ fieldset.q legend{padding:0;margin:0 0 10px;font-weight:500;width:100%}
 input.num-in,textarea.txt{border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:var(--surface);width:100%}
 input.num-in{max-width:140px}
 textarea.txt{min-height:92px;resize:vertical}
+/* grid question */
 .gridq{overflow-x:auto}
 .gridq table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
 .gridq th,.gridq td{border-bottom:1px solid var(--line);padding:8px;text-align:center;vertical-align:middle}
 .gridq th:first-child,.gridq td:first-child{text-align:left}
 .gridq thead th{font-weight:500;color:var(--muted);font-size:12.5px}
 .gridq input{accent-color:var(--accent);width:18px;height:18px}
+/* semantic differential */
 .sd{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px}
 .sd .l{text-align:right}.sd .r{text-align:left}
 .sd .pts{display:flex;gap:5px}
@@ -97,6 +132,8 @@ textarea.txt{min-height:92px;resize:vertical}
 .sd .pt:has(input:checked){background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .sd .pt:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:2px}
 @media (max-width:620px){.sd{grid-template-columns:1fr 1fr}.sd .pts{grid-column:1/-1;grid-row:2;justify-content:space-between}.sd .l{text-align:left}.sd .r{text-align:right}.sd .pt{width:32px;height:32px}}
+
+/* stimulus pages */
 .scen{padding:16px 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2)}
 .scen .tag{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
 .scen p{margin:0 0 10px}.scen p:last-child{margin:0}
@@ -105,11 +142,27 @@ textarea.txt{min-height:92px;resize:vertical}
 .thumbrow .cap{font-size:13px;color:var(--muted);min-width:0}
 .thumbrow .pfit{flex:none}
 .statusbox{display:grid;gap:12px;padding:6px 0}
-.spinner{width:22px;height:22px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:sp 1s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-.btn2{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:8px 16px;font-weight:600;cursor:pointer;justify-self:start}
-pre.csv{font-family:var(--f-code);font-size:11.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:10px;overflow-x:auto;white-space:pre;max-height:240px}
-/* app mock-up: fixed colours, it is a screenshot */
+.datatbl{width:100%;border-collapse:collapse;font-size:12.5px;font-family:var(--f-code)}
+.datatbl td{border-bottom:1px solid var(--line);padding:4px 6px;vertical-align:top;word-break:break-word}
+.datatbl td:first-child{color:var(--muted);width:36%}
+.datawrap{max-width:760px;margin:16px auto 0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.datawrap h3{margin:0 0 8px;font-size:14px}
+.datascroll{max-height:360px;overflow:auto}
+.btn2{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:8px 16px;font-weight:600;cursor:pointer}
+
+/* gallery */
+.gal{max-width:1120px;margin:0 auto;display:grid;gap:18px}
+.gal-head{display:grid;gap:6px}
+.gal-head h1{margin:0;font-size:20px}
+.gal-head p{margin:0;color:var(--muted);max-width:70ch}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.gcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:10px;align-content:start}
+.gcard .fn{font-family:var(--f-code);font-size:12.5px;font-weight:500}
+.gcard .use{font-size:12.5px;color:var(--muted)}
+.gcard.wide{grid-column:span 2}
+@media (max-width:640px){.gcard.wide{grid-column:auto}}
+
+/* ---------- app mock-up (fixed colours: it is a screenshot) ---------- */
 .pfit{position:relative;overflow:hidden;max-width:100%}
 .pfit > .phone{position:absolute;top:0;left:0;transform-origin:0 0}
 .phone{width:336px;height:585px;background:var(--app-frame);border-radius:40px;padding:8px;box-shadow:0 10px 30px rgba(10,20,30,.22)}
@@ -118,7 +171,7 @@ pre.csv{font-family:var(--f-code);font-size:11.5px;background:var(--surface-2);b
 .sbar svg{display:block}
 .ahd{height:46px;background:var(--app-brand);color:#fff;display:flex;align-items:center;gap:9px;padding:0 14px}
 .ahd .lg{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--app-brand);display:grid;place-items:center;font-weight:700;font-size:15px}
-.ahd .nm{font-weight:700;font-size:15px}
+.ahd .nm{font-weight:700;font-size:15px;letter-spacing:.01em}
 .ahd .ct{margin-left:auto;display:block}
 .srch{margin:8px 10px 0;height:34px;border-radius:9px;background:#fff;border:1px solid var(--app-line);display:flex;align-items:center;gap:7px;padding:0 10px;color:var(--app-muted);font-size:11.5px}
 .chps{display:flex;gap:6px;padding:9px 10px 0;overflow:hidden}
@@ -143,13 +196,15 @@ pre.csv{font-family:var(--f-code);font-size:11.5px;background:var(--surface-2);b
 .bnav{position:absolute;left:0;right:0;bottom:0;height:54px;background:#fff;border-top:1px solid var(--app-line);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;text-align:center;font-size:9.5px;color:var(--app-muted);padding-bottom:6px}
 .bnav div{display:grid;justify-items:center;gap:2px}
 .bnav .on{color:var(--app-brand);font-weight:600}
+/* recall mock */
 .rhd{height:44px;background:#E9ECEF;display:flex;align-items:center;gap:10px;padding:0 14px;color:#5B636B}
 .rph{background:#E3E6EA;border-radius:4px;height:8px}
 .msg{margin:10px 10px 0;background:var(--app-card);border:1px solid var(--app-line);border-radius:12px;padding:10px}
 .msg .mh{display:flex;align-items:center;gap:8px;font-weight:600;font-size:12px;margin-bottom:8px}
 .msg .av{width:26px;height:26px;border-radius:50%;background:#D9DDE2}
 .bub{background:#EEF1F4;border-radius:14px 14px 14px 4px;padding:8px 11px;font-size:11.5px;line-height:1.4}
-.illu{position:absolute;top:30px;right:12px;background:rgba(20,24,28,.72);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px}
+.illu{position:absolute;top:30px;right:12px;background:rgba(20,24,28,.72);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+/* K2 card */
 .k2{width:460px;max-width:100%;background:#fff;color:#1E1A21;border:1px solid #E1DCE3;border-radius:14px;padding:18px 18px 8px;font-family:var(--f-ui)}
 .k2 .k2h{font-weight:700;font-size:16px;color:#5E3768;margin-bottom:6px;line-height:1.3}
 .k2 .row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid #EEE9F0}
@@ -157,37 +212,57 @@ pre.csv{font-family:var(--f-code);font-size:11.5px;background:var(--surface-2);b
 .k2 .ic{flex:none;width:42px;height:42px;border-radius:12px;background:#F3EEF5;display:grid;place-items:center;color:#5E3768}
 .k2 .lb{font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#7A7280;margin-bottom:2px}
 .k2 .tx{font-size:14.5px;line-height:1.45}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+html.export-mode,html.export-mode body{background:transparent}
+.export .gal-grid{grid-template-columns:repeat(2,520px)}
+.export .gcard,.export .gcard.wide{background:transparent;border:0;grid-column:auto}
+.export .shot .phone{box-shadow:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<script src="config.js"></script>
-</head>
-<body>
-<div class="testbar" id="testbar" hidden>Chế độ thử: câu trả lời không được lưu. Bỏ "&amp;test=1" khỏi link khi chạy thật.</div>
-<main id="main"><div class="sheet"><div class="sh-body"><p class="lead">Đang tải khảo sát…</p></div></div></main>
+
+<header class="rbar" aria-label="Thanh công cụ xem trước">
+  <div class="rbar-in">
+    <div class="rrow">
+      <div class="rtitle">Bản xem trước bảng hỏi Study 2 <small>Thanh này chỉ dành cho nhóm nghiên cứu; người trả lời không thấy.</small></div>
+      <div class="seg" id="viewSeg" role="group" aria-label="Chế độ xem">
+        <button type="button" id="vSurvey" data-view="survey" aria-pressed="true">Bảng hỏi</button>
+        <button type="button" id="vGallery" data-view="gallery" aria-pressed="false">Ảnh kích thích</button>
+      </div>
+    </div>
+    <div class="rrow" id="ctlRow">
+      <span class="chip" aria-label="Nghiên cứu đang xem">STUDY 2 · THÍ NGHIỆM 2 × 2</span>
+      <span class="conds" id="condBox"></span>
+      <label class="fld" for="selJump">Đi tới <select id="selJump"></select></label>
+    </div>
+    <div class="rrow" id="optRow">
+      <label class="tg" for="tgCodes"><input type="checkbox" id="tgCodes"> Hiện mã biến</label>
+      <label class="tg" for="tgTimer"><input type="checkbox" id="tgTimer"> Bỏ đếm giờ</label>
+      <label class="tg" for="tgSkip"><input type="checkbox" id="tgSkip"> Cho bỏ trống</label>
+      <label class="tg" for="tgShuffle"><input type="checkbox" id="tgShuffle" checked> Xáo thứ tự item</label>
+      <button type="button" class="rbtn" id="btnData">Xem dữ liệu ghi được</button>
+      <button type="button" class="rbtn" id="btnReset">Làm lại từ đầu</button>
+      <span class="chip" id="cellChip" hidden></span>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+
+<!-- Study configuration: keep config.js beside index.html on GitHub Pages. -->
+<script src="./config.js"></script>
+<style id="participant-production-overrides">
+  /* Hide research-only preview controls in the public participant version. */
+  .rbar { display: none !important; }
+  .datawrap { display: none !important; }
+</style>
+
 <script>
 (function(){
 "use strict";
-/* ================= setup ================= */
-const CFG=window.SURVEY_CONFIG||{};
-const Q=new URLSearchParams(location.search);
-const STUDY=+Q.get("s");
-const TEST=Q.get("test")==="1";
-const MODE=(STUDY===1&&Q.get("mode")==="pilot")?"pilot":"main";
-const PID=(Q.get(CFG.PID_PARAM||"pid")||"").slice(0,120);
-const DP_KEY=String(STUDY)+(MODE==="pilot"?"-pilot":"");
-const DP_ID=((CFG.DATAPIPE_ID||{})[DP_KEY]||"").trim();
-const RID=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("r"+Date.now().toString(36)+Math.random().toString(36).slice(2,10));
-const DONE_KEY=`chuoiA_s${DP_KEY}_done`;
-const API="https://pipe.jspsych.org/api/";
-if(TEST){document.body.classList.add("test");document.getElementById("testbar").hidden=false}
-
+/* ================= helpers ================= */
 const $=(s,el=document)=>el.querySelector(s);
-const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const LIK=["Hoàn toàn không đồng ý","Không đồng ý","Hơi không đồng ý","Trung lập","Hơi đồng ý","Đồng ý","Hoàn toàn đồng ý"];
 const FREQ=["Chưa bao giờ","Hiếm khi (1 lần)","Thỉnh thoảng (2–3 lần)","Khá thường xuyên (4–5 lần)","Rất thường xuyên (hơn 5 lần)"];
-const CHAINS=(CFG.CHAINS&&CFG.CHAINS.length)?CFG.CHAINS:[{v:1,name:"[Chuỗi 1]",cat:1}];
-const QUOTA_FULL=(CFG.QUOTA_FULL||[]).map(Number);
+const CHAINS=[{v:1,name:"[Chuỗi 1]",cat:1},{v:2,name:"[Chuỗi 2]",cat:2},{v:3,name:"[Chuỗi 3]",cat:3},{v:4,name:"[Chuỗi 4]",cat:4},{v:5,name:"[Chuỗi 5]",cat:4}];
 const CATS={1:{n:"điện máy",nh:"đồ điện máy, điện thoại"},2:{n:"nhà thuốc",nh:"thuốc và sản phẩm sức khỏe"},3:{n:"mỹ phẩm",nh:"mỹ phẩm và đồ chăm sóc cá nhân"},4:{n:"siêu thị",nh:"thực phẩm và đồ dùng hằng ngày"}};
 const PCH=[[1,"Mục gợi ý trong app hoặc website"],[2,"Thông báo đẩy của app"],[3,"SMS"],[4,"Zalo"],[5,"Email"]];
 const PRICES=["45.000 đ","59.000 đ","32.000 đ"];
@@ -197,34 +272,38 @@ const PRODUCTS={
 };
 const BLOCK_LINE="Gợi ý này chỉ dựa trên các sản phẩm bạn đã xem trong app. Chuỗi A không dùng lịch sử mua tại cửa hàng để gợi ý.";
 const PROFILE_TXT={0:"sữa thực vật không đường, yến mạch nguyên chất và đồ ăn sáng ít đường",1:"sữa tươi, ngũ cốc ăn sáng và bánh mì sandwich"};
-const cfgOn=k=>String(CFG[k]??"").trim()!=="";
-const cfgIf=t=>{let o;do{o=t;t=t.replace(/\{IF:(\w+)\}([\s\S]*?)\{\/IF:\1\}/g,(m,k,x)=>cfgOn(k)?x:"")}while(t!==o);return t};
-const cfgv=k=>{const v=String(CFG[k]??"");return v.startsWith("[")?`<span class="ph">${esc(v)}</span>`:esc(v)};
 function chainOf(s){return CHAINS.find(c=>c.v===s.emb.RETAILER)}
 function fmt(s,t){
   const ch=chainOf(s);
-  const A=ch?esc(ch.name):"chuỗi bạn đã chọn";
-  const NH=ch&&CATS[ch.cat]?CATS[ch.cat].nh:"sản phẩm của chuỗi";
-  return cfgIf(String(t)).replace(/\{A\}/g,A).replace(/\{NH\}/g,NH).replace(/\{CFG:(\w+)\}/g,(m,k)=>cfgv(k));
+  const A=ch?`<span class="ph">${ch.name}</span>`:`<span class="ph">[Chuỗi A]</span>`;
+  const NH=ch?CATS[ch.cat].nh:`<span class="ph">[ngành hàng]</span>`;
+  return String(t).replace(/\{A\}/g,A).replace(/\{NH\}/g,NH).replace(/\[\[(.+?)\]\]/g,'<span class="ph">[$1]</span>');
 }
 const code=c=>`<span class="code">${esc(c)}</span>`;
 function shuffle(n){const a=[...Array(n).keys()];for(let i=n-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 const norm=t=>String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d");
-const L=items=>items.map(([c,t])=>({c,t}));
+const L=(items)=>items.map(([c,t])=>({c,t}));
 
-/* ================= product art and stimuli ================= */
+/* ================= product art (generic, no real brands) ================= */
 function art(k){
   const T=(x,y,s,fill,txt,w=700)=>`<text x="${x}" y="${y}" font-size="${s}" font-weight="${w}" fill="${fill}" text-anchor="middle" font-family="Be Vietnam Pro, Arial, sans-serif">${txt}</text>`;
-  const carton=(body,top,cap,band,b1,b2,small,sf)=>`<path d="M32 31 L50 15 L68 31 Z" fill="${top}"/><rect x="45.5" y="10" width="9" height="7" rx="1.5" fill="${cap}"/><path d="M32 31 H68 V88 Q68 91 65 91 H35 Q32 91 32 88 Z" fill="${body}" stroke="rgba(0,0,0,.08)"/>`+T(50,41,4.6,sf,small,600)+`<rect x="32" y="46" width="36" height="20" fill="${band}"/>`+T(50,54.5,5.6,"#fff",b1)+T(50,62.5,5.6,"#fff",b2);
-  const bag=(loaf,crust,band,txt)=>`<rect x="16" y="34" width="68" height="50" rx="12" fill="#ECE6DA" stroke="rgba(0,0,0,.07)"/><rect x="82" y="52" width="7" height="10" rx="2.5" fill="#C9BFAE"/><path d="M23 77 V53 Q23 41 36 41 H64 Q77 41 77 53 V77 Z" fill="${loaf}" stroke="${crust}" stroke-width="2"/><rect x="16" y="62" width="68" height="12" fill="${band}"/>`+T(50,70.3,5.2,"#fff",txt);
-  const svg=b=>`<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#F4F1EC"/>${b}</svg>`;
+  const carton=(body,top,cap,band,bandTxt1,bandTxt2,small,smallFill)=>
+    `<path d="M32 31 L50 15 L68 31 Z" fill="${top}"/><rect x="45.5" y="10" width="9" height="7" rx="1.5" fill="${cap}"/>`+
+    `<path d="M32 31 H68 V88 Q68 91 65 91 H35 Q32 91 32 88 Z" fill="${body}" stroke="rgba(0,0,0,.08)"/>`+
+    T(50,41,4.6,smallFill,small,600)+`<rect x="32" y="46" width="36" height="20" fill="${band}"/>`+T(50,54.5,5.6,"#fff",bandTxt1)+T(50,62.5,5.6,"#fff",bandTxt2);
+  const bag=(loaf,crust,band,txt)=>
+    `<rect x="16" y="34" width="68" height="50" rx="12" fill="#ECE6DA" stroke="rgba(0,0,0,.07)"/><rect x="82" y="52" width="7" height="10" rx="2.5" fill="#C9BFAE"/>`+
+    `<path d="M23 77 V53 Q23 41 36 41 H64 Q77 41 77 53 V77 Z" fill="${loaf}" stroke="${crust}" stroke-width="2"/>`+
+    `<rect x="16" y="62" width="68" height="12" fill="${band}"/>`+T(50,70.3,5.2,"#fff",txt);
+  const bg=`<rect width="100" height="100" fill="#F4F1EC"/>`;
+  const svg=b=>`<svg viewBox="0 0 100 100" role="img" aria-hidden="true">${bg}${b}</svg>`;
   switch(k){
-    case "almond":return svg(carton("#F2E7D3","#E3D3B7","#C7AD86","#7C5333","SỮA","HẠNH NHÂN","KHÔNG ĐƯỜNG","#7C5333")+`<ellipse cx="50" cy="78" rx="4.6" ry="7.6" transform="rotate(28 50 78)" fill="#B57B4B"/><ellipse cx="57" cy="80" rx="3.6" ry="6" transform="rotate(-20 57 80)" fill="#9C653A"/>`);
-    case "milk":return svg(carton("#FFFFFF","#E8EEF4","#9DB6D3","#2F6CB2","SỮA TƯƠI","TIỆT TRÙNG","1 LÍT","#2F6CB2")+`<path d="M50 70 C46.5 75.5 45 78.5 45 81 A5 5 0 0 0 55 81 C55 78.5 53.5 75.5 50 70 Z" fill="#7FA8D8"/>`);
-    case "oats":return svg(`<path d="M30 20 Q30 15 35 15 H65 Q70 15 70 20 L73 87 Q73 91 69 91 H31 Q27 91 27 87 Z" fill="#E5D19D" stroke="rgba(0,0,0,.07)"/><rect x="30" y="15" width="40" height="5" fill="#CDB476"/>`+T(50,33,6,"#5A4420","YẾN MẠCH")+T(50,40,4.2,"#7A6334","NGUYÊN CHẤT",600)+`<ellipse cx="50" cy="63" rx="15.5" ry="13.5" fill="#F6ECD1"/>`+[[44,58],[51,56],[57,60],[46,65],[53,64],[59,67],[42,69],[49,71],[56,72]].map(([x,y],i)=>`<ellipse cx="${x}" cy="${y}" rx="3" ry="1.9" transform="rotate(${(i*37)%90-45} ${x} ${y})" fill="#D2B672"/>`).join(""));
-    case "cereal":return svg(`<rect x="30" y="12" width="40" height="78" rx="2" fill="#E3982D"/><rect x="30" y="12" width="40" height="5" fill="#C67E1B"/>`+T(50,28,6.4,"#fff","NGŨ CỐC")+T(50,35,4.2,"#FFF3DB","ĂN SÁNG",600)+[[41,57],[46,54],[52,55],[58,57],[44,60],[50,59],[56,61]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3" fill="#F7CA6A" stroke="#D49A34" stroke-width=".8"/>`).join("")+`<path d="M36 61 H64 Q63 76 50 77 Q37 76 36 61 Z" fill="#fff"/>`);
-    case "wgbread":return svg(bag("#8E5A2E","#6E4220","#3E6A3A","NGUYÊN CÁM")+[[34,48],[42,46],[50,49],[58,46],[66,49],[38,54],[62,55]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="1.6" ry="1" fill="#D0A26C"/>`).join(""));
-    case "sandwich":return svg(bag("#EED3A0","#C58C4D","#B1562F","SANDWICH"));
+    case "almond": return svg(carton("#F2E7D3","#E3D3B7","#C7AD86","#7C5333","SỮA","HẠNH NHÂN","KHÔNG ĐƯỜNG","#7C5333")+`<ellipse cx="50" cy="78" rx="4.6" ry="7.6" transform="rotate(28 50 78)" fill="#B57B4B"/><ellipse cx="57" cy="80" rx="3.6" ry="6" transform="rotate(-20 57 80)" fill="#9C653A"/>`);
+    case "milk": return svg(carton("#FFFFFF","#E8EEF4","#9DB6D3","#2F6CB2","SỮA TƯƠI","TIỆT TRÙNG","1 LÍT","#2F6CB2")+`<path d="M50 70 C46.5 75.5 45 78.5 45 81 A5 5 0 0 0 55 81 C55 78.5 53.5 75.5 50 70 Z" fill="#7FA8D8"/>`);
+    case "oats": return svg(`<path d="M30 20 Q30 15 35 15 H65 Q70 15 70 20 L73 87 Q73 91 69 91 H31 Q27 91 27 87 Z" fill="#E5D19D" stroke="rgba(0,0,0,.07)"/><rect x="30" y="15" width="40" height="5" fill="#CDB476"/>`+T(50,33,6,"#5A4420","YẾN MẠCH")+T(50,40,4.2,"#7A6334","NGUYÊN CHẤT",600)+`<ellipse cx="50" cy="63" rx="15.5" ry="13.5" fill="#F6ECD1"/>`+[[44,58],[51,56],[57,60],[46,65],[53,64],[59,67],[42,69],[49,71],[56,72]].map(([x,y],i)=>`<ellipse cx="${x}" cy="${y}" rx="3" ry="1.9" transform="rotate(${(i*37)%90-45} ${x} ${y})" fill="#D2B672"/>`).join(""));
+    case "cereal": return svg(`<rect x="30" y="12" width="40" height="78" rx="2" fill="#E3982D"/><rect x="30" y="12" width="40" height="5" fill="#C67E1B"/>`+T(50,28,6.4,"#fff","NGŨ CỐC")+T(50,35,4.2,"#FFF3DB","ĂN SÁNG",600)+[[41,57],[46,54],[52,55],[58,57],[44,60],[50,59],[56,61]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3" fill="#F7CA6A" stroke="#D49A34" stroke-width=".8"/>`).join("")+`<path d="M36 61 H64 Q63 76 50 77 Q37 76 36 61 Z" fill="#fff"/>`);
+    case "wgbread": return svg(bag("#8E5A2E","#6E4220","#3E6A3A","NGUYÊN CÁM")+[[34,48],[42,46],[50,49],[58,46],[66,49],[38,54],[62,55]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="1.6" ry="1" fill="#D0A26C"/>`).join(""));
+    case "sandwich": return svg(bag("#EED3A0","#C58C4D","#B1562F","SANDWICH"));
   }
   return svg("");
 }
@@ -246,57 +325,81 @@ const ICON={
   bag:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>`,
   ret:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12a4 4 0 0 1 0 8H8"/><path d="M8 5L4 9l4 4"/></svg>`
 };
-const phone=inner=>`<div class="phone"><div class="scr">${inner}</div></div>`;
-const statusBar=()=>`<div class="sbar"><span>9:41</span><span style="display:flex;gap:6px;align-items:center">${ICON.wifi}${ICON.batt}</span></div>`;
-const bottomNav=(on=true)=>`<div class="bnav"><div class="${on?"on":""}">${ICON.home}Trang chủ</div><div>${ICON.grid}Danh mục</div><div>${ICON.cart2}Giỏ hàng</div><div>${ICON.user}Tài khoản</div></div>`;
-function appScreen(o){
+
+/* ================= stimulus renderers ================= */
+function phone(inner){return `<div class="phone"><div class="scr">${inner}</div></div>`}
+function statusBar(){return `<div class="sbar"><span>9:41</span><span style="display:flex;gap:6px;align-items:center">${ICON.wifi}${ICON.batt}</span></div>`}
+function bottomNav(){return `<div class="bnav"><div class="on">${ICON.home}Trang chủ</div><div>${ICON.grid}Danh mục</div><div>${ICON.cart2}Giỏ hàng</div><div>${ICON.user}Tài khoản</div></div>`}
+function appScreen(o){ /* o = {list:'X'|'Y', goiy:bool, block:bool} */
   const title=o.goiy?"Gợi ý cho bạn":"Đồ ăn sáng bán chạy tuần này";
   const cards=PRODUCTS[o.list].map((p,i)=>`<div class="pc"><div class="im">${art(p.k)}</div><div class="n">${p.n}</div><div class="qy">${p.q}</div><div class="pr">${PRICES[i]}</div><div class="ad">Thêm vào giỏ</div></div>`).join("");
-  return phone(statusBar()+`<div class="ahd"><span class="lg">A</span><span class="nm">Chuỗi A</span><span class="ct">${ICON.cart}</span></div><div class="srch">${ICON.search}<span>Tìm sản phẩm…</span></div><div class="chps"><span>Rau củ</span><span>Sữa</span><span>Đồ khô</span><span>Đồ uống</span><span>Gia vị</span></div><div class="hello">Chào buổi sáng!</div>`+
-    `<div class="sec"><div class="sech"><b>${title}</b><span>Xem tất cả ›</span></div>`+(o.block?`<div class="info">${ICON.info}<span>${BLOCK_LINE}</span></div>`:"")+`<div class="pg">${cards}</div></div>`+
-    `<div class="sec"><div class="sech"><b>Danh mục</b><span>Xem tất cả ›</span></div><div class="cats"><div><i>${ICON.leaf}</i>Rau củ</div><div><i>${ICON.fish}</i>Thịt cá</div><div><i>${ICON.grain}</i>Đồ khô</div><div><i>${ICON.cup}</i>Đồ uống</div></div></div>`+bottomNav());
+  return phone(statusBar()+
+    `<div class="ahd"><span class="lg">A</span><span class="nm">Chuỗi A</span><span class="ct">${ICON.cart}</span></div>`+
+    `<div class="srch">${ICON.search}<span>Tìm sản phẩm…</span></div>`+
+    `<div class="chps"><span>Rau củ</span><span>Sữa</span><span>Đồ khô</span><span>Đồ uống</span><span>Gia vị</span></div>`+
+    `<div class="hello">Chào buổi sáng!</div>`+
+    `<div class="sec"><div class="sech"><b>${title}</b><span>Xem tất cả ›</span></div>`+
+    (o.block?`<div class="info">${ICON.info}<span>${BLOCK_LINE}</span></div>`:"")+
+    `<div class="pg">${cards}</div></div>`+
+    `<div class="sec"><div class="sech"><b>Danh mục</b><span>Xem tất cả ›</span></div><div class="cats"><div><i>${ICON.leaf}</i>Rau củ</div><div><i>${ICON.fish}</i>Thịt cá</div><div><i>${ICON.grain}</i>Đồ khô</div><div><i>${ICON.cup}</i>Đồ uống</div></div></div>`+
+    bottomNav());
 }
 function recallScreen(){
-  const ph=w=>`<div class="rph" style="width:${w}%"></div>`;
-  const card=ic=>`<div class="pc"><div class="im" style="background:#EEF0F3;display:grid;place-items:center;color:#9AA3AC">${ic}</div>${ph(90)}${ph(60)}<div class="rph" style="width:45%;height:10px;background:#D7DBE0"></div></div>`;
+  const ph=(w)=>`<div class="rph" style="width:${w}%"></div>`;
+  const card=(ic)=>`<div class="pc"><div class="im" style="background:#EEF0F3;display:grid;place-items:center;color:#9AA3AC">${ic}</div>${ph(90)}${ph(60)}<div class="rph" style="width:45%;height:10px;background:#D7DBE0"></div></div>`;
   return phone(statusBar()+`<div class="rhd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span style="font-weight:600;font-size:13px">App mua sắm</span><span style="margin-left:auto">${ICON.search}</span></div>`+
     `<div class="sec" style="margin-top:12px"><div class="sech"><b>Gợi ý cho bạn</b><span>Xem tất cả ›</span></div><div class="pg">${card(ICON.box)}${card(ICON.cup)}${card(ICON.bag)}</div></div>`+
     `<div class="msg"><div class="mh"><span class="av"></span>Tin nhắn</div><div class="bub">Ưu đãi dành riêng cho bạn: giảm 15% cho một số sản phẩm đến hết tháng này.</div></div>`+
-    `<div class="msg" style="opacity:.55"><div class="mh"><span class="av"></span>Thông báo</div><div class="rph" style="width:85%;height:9px"></div><div class="rph" style="width:55%;height:9px;margin-top:6px"></div></div><span class="illu">Ảnh minh họa</span>`+bottomNav(false));
+    `<div class="msg" style="opacity:.55"><div class="mh"><span class="av"></span>Thông báo</div><div class="rph" style="width:85%;height:9px"></div><div class="rph" style="width:55%;height:9px;margin-top:6px"></div></div>`+
+    `<span class="illu">Ảnh minh họa</span>`+bottomNav().replace('class="on"','class=""'));
 }
-const K2TXT={0:["Số lượng hàng hiển thị trên app không khớp với hàng ở cửa hàng.","Đơn đặt trên app chỉ giao tận nhà, không nhận tại cửa hàng được.","Hàng mua ở kênh nào thì chỉ đổi trả ở kênh đó."],1:["App cho biết từng cửa hàng còn bao nhiêu hàng.","Bạn có thể đặt trên app rồi đến cửa hàng gần nhất lấy.","Hàng mua ở đâu cũng đổi trả được ở bất kỳ cửa hàng nào hoặc qua app."]};
-function k2Card(level){const lab=["Tồn kho","Nhận hàng","Đổi trả"],ic=[ICON.box,ICON.bag,ICON.ret];
-  return `<div class="k2"><div class="k2h">Cách Chuỗi A phục vụ khách trên app và tại cửa hàng</div>`+K2TXT[level].map((t,i)=>`<div class="row"><span class="ic">${ic[i]}</span><div><div class="lb">${lab[i]}</div><div class="tx">${t}</div></div></div>`).join("")+`</div>`}
-const fit=(h,max)=>`<div class="pfit" data-max="${max}">${h}</div>`;
-function refit(root=document){root.querySelectorAll(".pfit").forEach(w=>{const ph=w.firstElementChild;if(!ph)return;const max=+w.dataset.max||336;const avail=w.parentElement.clientWidth||max;const width=Math.min(max,avail);const sc=width/336;ph.style.transform=`scale(${sc})`;w.style.width=width+"px";w.style.height=(585*sc)+"px"})}
-function screenFor(s){const prof=s.emb.PROFILE??0,own=prof===0?"X":"Y",other=prof===0?"Y":"X";
-  if(STUDY===2){const hi=(s.emb.PERS??1)===1;return{list:hi?own:other,goiy:hi,block:false}}
-  return{list:own,goiy:true,block:(s.emb.BLOCK??0)===1}}
+const K2TXT={
+  0:["Số lượng hàng hiển thị trên app không khớp với hàng ở cửa hàng.","Đơn đặt trên app chỉ giao tận nhà, không nhận tại cửa hàng được.","Hàng mua ở kênh nào thì chỉ đổi trả ở kênh đó."],
+  1:["App cho biết từng cửa hàng còn bao nhiêu hàng.","Bạn có thể đặt trên app rồi đến cửa hàng gần nhất lấy.","Hàng mua ở đâu cũng đổi trả được ở bất kỳ cửa hàng nào hoặc qua app."]
+};
+function k2Card(level){
+  const lab=["Tồn kho","Nhận hàng","Đổi trả"],ic=[ICON.box,ICON.bag,ICON.ret];
+  return `<div class="k2"><div class="k2h">Cách Chuỗi A phục vụ khách trên app và tại cửa hàng</div>`+
+    K2TXT[level].map((t,i)=>`<div class="row"><span class="ic">${ic[i]}</span><div><div class="lb">${lab[i]}</div><div class="tx">${t}</div></div></div>`).join("")+`</div>`;
+}
+function fit(html,max){return `<div class="pfit" data-max="${max}">${html}</div>`}
+function refit(root=document){
+  root.querySelectorAll(".pfit").forEach(w=>{
+    const ph=w.firstElementChild;if(!ph)return;
+    const max=+w.dataset.max||336;const avail=w.parentElement.clientWidth||max;
+    const width=Math.min(max,avail);const sc=width/336;
+    ph.style.transform=`scale(${sc})`;w.style.width=width+"px";w.style.height=(585*sc)+"px";
+  });
+}
+function screenFor(s){ /* which app screen this respondent sees */
+  const prof=s.emb.PROFILE??0, own=prof===0?"X":"Y", other=prof===0?"Y":"X";
+  if(s.study===2){const hi=(s.emb.PERS??1)===1;return {list:hi?own:other,goiy:hi,block:false}}
+  return {list:own,goiy:true,block:(s.emb.BLOCK??0)===1};
+}
 const imgName=o=>`IMG_${o.goiy?"GOIY":"BANCHAY"}_${o.list}${o.block?"_BLOCK":""}`;
 
-/* ================= items ================= */
+/* ================= block builders ================= */
 const lik=(items,opt={})=>Object.assign({type:"lik",items,scale:"LIK"},opt);
 const single=(c,t,opts,o={})=>Object.assign({type:"single",c,t,opts},o);
-const html=h=>({type:"html",h});
-const intro=t=>({type:"html",h:s=>`<p class="intro">${fmt(s,t)}</p>`});
-const ATCB=[["ATCB1","Xanh dương là một màu đẹp."],["ATCB2","Màu xanh dương thật tuyệt."]];
-if(String(CFG.ATCB3||"").trim())ATCB.push(["ATCB3",String(CFG.ATCB3).trim()]);
-if(String(CFG.ATCB4||"").trim())ATCB.push(["ATCB4",String(CFG.ATCB4).trim()]);
+const html=(h)=>({type:"html",h});
+const intro=(t)=>({type:"html",h:s=>`<p class="intro">${fmt(s,t)}</p>`});
+
+/* ---------- shared item sets ---------- */
 const ITEMS={
  RS:L([["RS1","Tôi rất gắn bó với mối quan hệ của mình với {A}."],["RS2","Mối quan hệ với {A} là điều tôi muốn duy trì lâu dài."],["RS3","Tôi bỏ công sức để duy trì mối quan hệ với {A}."]]),
  PCI:L([["PCI1","Tôi có thể mua hàng của {A} qua app hoặc tại cửa hàng."],["PCI2","Tôi có thể xem thông tin chi tiết về sản phẩm của {A} trên app hoặc tại cửa hàng."],["PCI3","Tôi biết các dịch vụ hiện có trên app và tại cửa hàng của {A}."],["PCI4","Tôi biết cách dùng các dịch vụ trên app và tại cửa hàng của {A}."],["PCI5","Giá sản phẩm trên app và tại cửa hàng của {A} giống nhau."],["PCI6","Thông tin còn hàng trên app của {A} khớp với hàng thực có tại cửa hàng."],["PCI7","Chất lượng phục vụ trên app và tại cửa hàng của {A} như nhau."],["PCI8","Tốc độ phục vụ trên app và tại cửa hàng của {A} như nhau."],["PCI9","Tôi có thể đặt hàng trên app rồi nhận tại cửa hàng của {A}."],["PCI10","Hàng mua ở kênh nào của {A} cũng đổi trả được ở kênh còn lại."]]),
- PAP:L([["PAP1","Các gợi ý và ưu đãi của {A} được điều chỉnh rất riêng cho tôi."]].concat(MODE==="pilot"?[["PAP2","Hệ thống của {A} dường như dùng nhiều thông tin cá nhân của tôi để điều chỉnh ưu đãi."]]:[],[["PAP3","Các gợi ý của {A} là dành riêng cho tôi, không phải gợi ý chung cho mọi người."],["PAP4","AI của {A} có vẻ hiểu tôi rất rõ."]])),
- PPV:L([["PPV1","Tôi đánh giá cao việc {A} tự điều chỉnh sản phẩm và ưu đãi theo sở thích của tôi."],["PPV2","Phần lớn các sản phẩm {A} gợi ý đáng để tôi cân nhắc."],["PPV3","Các gợi ý của {A} giúp tôi tiết kiệm thời gian và công sức khi mua sắm."],["PPV4","Nhờ các gợi ý của {A}, tôi mua được món cần mua nhanh hơn."],["PPV5","Các gợi ý của {A} giúp tôi chọn mua đúng hơn, ít mua nhầm hay bỏ sót hơn."],["IRI1","Để biết bạn đang đọc kỹ, hãy chọn \"Hơi không đồng ý\" cho câu này."]]),
- LOY:L([["LOY1","Tôi sẽ nói những điều tích cực về {A} với người khác."],["LOY2","Tôi sẽ giới thiệu {A} cho người hỏi ý kiến tôi."],["LOY3","Tôi sẽ khuyến khích bạn bè và người thân mua sắm ở {A}."],["LOY4","{A} là lựa chọn đầu tiên của tôi khi mua {NH}."],["LOY5","Tôi sẽ mua sắm ở {A} nhiều hơn trong vài năm tới."]]),
- ATCB:L(ATCB),
- CRP:L([["CRP1","Khi nhận các gợi ý này, tôi có cảm giác bồn chồn khó chịu."],["CRP2","Tôi có cảm giác có gì đó mờ ám trong các gợi ý này."],["CRP3","Tôi thấy bất an khi nhận các gợi ý này."],["CRP4","Tôi có một nỗi sợ khó gọi tên khi nhận các gợi ý này."],["CRP5","Các gợi ý này khiến tôi cảm thấy bị đe dọa theo một cách nào đó."]]),
- PI:L([["PI1","Những tương tác với AI này của {A} khiến tôi thấy bị xâm phạm."],["PI2","Tôi thấy hệ thống quá thân mật, như thể tôi đang bị theo dõi."],["PI3","Nhìn chung, các tính năng AI này khiến tôi thấy hơi rờn rợn, khó chịu."],["PI4","Tôi hiếm khi thấy các tính năng AI này vượt quá giới hạn."],["PI5","Những tương tác này quá riêng tư, khiến tôi bất an."]]),
+ PAP1:L([["PAP1","Các gợi ý và ưu đãi của {A} được điều chỉnh rất riêng cho tôi."],["PAP3","Các gợi ý của {A} là dành riêng cho tôi, không phải gợi ý chung cho mọi người."],["PAP4","AI của {A} có vẻ hiểu tôi rất rõ."]]),
+ PPV1:L([["PPV1","Tôi đánh giá cao việc {A} tự điều chỉnh sản phẩm và ưu đãi theo sở thích của tôi."],["PPV2","Phần lớn các sản phẩm {A} gợi ý đáng để tôi cân nhắc."],["PPV3","Các gợi ý của {A} giúp tôi tiết kiệm thời gian và công sức khi mua sắm."],["PPV4","Nhờ các gợi ý của {A}, tôi mua được món cần mua nhanh hơn."],["PPV5","Các gợi ý của {A} giúp tôi chọn mua đúng hơn, ít mua nhầm hay bỏ sót hơn."],["IRI1","Để biết bạn đang đọc kỹ, hãy chọn \"Hơi không đồng ý\" cho câu này."]]),
+ LOY1:L([["LOY1","Tôi sẽ nói những điều tích cực về {A} với người khác."],["LOY2","Tôi sẽ giới thiệu {A} cho người hỏi ý kiến tôi."],["LOY3","Tôi sẽ khuyến khích bạn bè và người thân mua sắm ở {A}."],["LOY4","{A} là lựa chọn đầu tiên của tôi khi mua {NH}."],["LOY5","Tôi sẽ mua sắm ở {A} nhiều hơn trong vài năm tới."]]),
+ ATCB:L([["ATCB1","Xanh dương là một màu đẹp."],["ATCB2","Màu xanh dương thật tuyệt."],["ATCB3","[[ATCB3: chờ item gốc của Miller & Simmering, 2023]]"],["ATCB4","[[ATCB4: chờ item gốc của Miller & Simmering, 2023]]"]]),
+ CRP1:L([["CRP1","Khi nhận các gợi ý này, tôi có cảm giác bồn chồn khó chịu."],["CRP2","Tôi có cảm giác có gì đó mờ ám trong các gợi ý này."],["CRP3","Tôi thấy bất an khi nhận các gợi ý này."],["CRP4","Tôi có một nỗi sợ khó gọi tên khi nhận các gợi ý này."],["CRP5","Các gợi ý này khiến tôi cảm thấy bị đe dọa theo một cách nào đó."]]),
  IUIPC:L([["IUIPC1","Quyền riêng tư của người tiêu dùng thực chất là quyền tự quyết định thông tin của mình được thu thập, sử dụng và chia sẻ ra sao."],["IUIPC2","Việc người tiêu dùng kiểm soát được thông tin cá nhân là cốt lõi của quyền riêng tư."],["IUIPC3","Tôi cho rằng quyền riêng tư bị xâm phạm khi tôi mất hoặc bị giảm quyền kiểm soát thông tin vì một giao dịch mua bán."],["IUIPC4","Doanh nghiệp thu thập thông tin cần công khai cách thu thập, xử lý và sử dụng dữ liệu."],["IUIPC5","Một chính sách quyền riêng tư tốt phải công bố rõ ràng, dễ thấy."],["IUIPC6","Với tôi, việc biết rõ thông tin cá nhân của mình sẽ được dùng thế nào là rất quan trọng."],["IUIPC7","Tôi thường thấy phiền khi doanh nghiệp hỏi thông tin cá nhân của tôi."],["IUIPC8","Khi doanh nghiệp hỏi thông tin cá nhân, đôi khi tôi phải cân nhắc trước khi cung cấp."],["IUIPC9","Tôi thấy phiền khi phải cung cấp thông tin cá nhân cho quá nhiều doanh nghiệp."],["IUIPC10","Tôi lo các doanh nghiệp đang thu thập quá nhiều thông tin cá nhân về tôi."]]),
  PPR:L([["PPR1","Từ chối đọc số điện thoại hoặc mã thành viên khi thanh toán tại cửa hàng."],["PPR2","Bỏ qua hoặc từ chối khi app yêu cầu thêm thông tin cá nhân."],["PPR3","Khai sai một số thông tin cá nhân trên app (ví dụ ngày sinh, sở thích)."],["PPR4","Dùng thông tin không thật khi đăng ký ưu đãi hoặc chương trình của {A}."],["PPR5","Xóa lịch sử tìm kiếm hoặc lịch sử mua hàng trên app."],["PPR6","Yêu cầu {A} xóa dữ liệu của tôi hoặc tắt chức năng cá nhân hóa."]]),
- PCDL:L([["PCDL1","Tôi nghĩ các gợi ý trên app của {A} có dùng thông tin từ các lần tôi mua tại cửa hàng."],["PCDL2","Khi tôi dùng một kênh của {A}, những gì tôi làm ở kênh khác đều được tính đến."],["PCDL3","{A} ghép thông tin mua hàng của tôi ở cửa hàng và trên app vào cùng một hồ sơ."],["PCDL4","Khi tôi dùng app, {A} biết tôi đã mua gì ở cửa hàng."]]),
+ PCDL1:L([["PCDL1","Tôi nghĩ các gợi ý trên app của {A} có dùng thông tin từ các lần tôi mua tại cửa hàng."],["PCDL2","Khi tôi dùng một kênh của {A}, những gì tôi làm ở kênh khác đều được tính đến."],["PCDL3","{A} ghép thông tin mua hàng của tôi ở cửa hàng và trên app vào cùng một hồ sơ."],["PCDL4","Khi tôi dùng app, {A} biết tôi đã mua gì ở cửa hàng."]]),
  TAI:L([["TAI1","Tôi tin rằng phần lớn các hệ thống AI làm tốt việc chúng được thiết kế để làm."],["TAI2","Đa số các hệ thống AI là rất tốt."],["TAI3","Phần lớn các hệ thống AI có đủ tính năng cần thiết cho lĩnh vực của chúng."],["TAI4","Tôi nghĩ phần lớn các hệ thống AI giúp tôi làm được việc tôi cần."]]),
  AL:L([["AL1","Nhìn chung, tôi hiểu các thuật toán gợi ý sản phẩm và định giá trên mạng dùng những dữ liệu nào."],["AL2","Tôi biết các thuật toán này có thể thiên lệch hoặc có hạn chế."],["AL3","Tôi có thể giải thích sơ lược cách các dịch vụ AI tạo ra gợi ý."],["AL4","Tôi nhận ra khi nào một kết quả có thể là do các giả định có sẵn trong mô hình AI."],["AL5","Tôi hiểu rằng chất lượng dữ liệu ảnh hưởng đến kết quả AI đưa ra."]]),
  PSE:L([["PSE1","Tôi có thể tự bảo vệ thông tin cá nhân của mình trên mạng, chẳng hạn lịch sử duyệt web."],["PSE2","Tôi tự tin mình giữ được quyền riêng tư trên mạng."],["PSE3","Tôi có thể đảm bảo các doanh nghiệp không thu thập được thông tin và hành vi của tôi trên mạng."]]),
+ /* experiment versions */
  xPPV:L([["PPV1","Tôi đánh giá cao những gợi ý như thế này của Chuỗi A."],["PPV2","Phần lớn các sản phẩm được gợi ý đáng để tôi cân nhắc."],["PPV3","Những gợi ý như thế này sẽ giúp tôi tiết kiệm thời gian và công sức khi mua sắm."],["PPV4","Nhờ những gợi ý như thế này, tôi sẽ mua được món cần mua nhanh hơn."],["PPV5","Những gợi ý như thế này sẽ giúp tôi chọn mua đúng hơn, ít mua nhầm hay bỏ sót hơn."]]),
  xCRP:L([["CRP1","Khi thấy gợi ý này, tôi có cảm giác bồn chồn khó chịu."],["CRP2","Tôi có cảm giác có gì đó mờ ám trong gợi ý này."],["CRP3","Tôi thấy bất an khi thấy gợi ý này."],["CRP4","Tôi có một nỗi sợ khó gọi tên khi thấy gợi ý này."],["CRP5","Gợi ý này khiến tôi cảm thấy bị đe dọa theo một cách nào đó."]]),
  xAMB:L([["AMB1","Tôi không biết nên đánh giá gợi ý này thế nào."],["AMB2","Khi thấy gợi ý này, tôi có cảm giác có những điều đang diễn ra mà tôi không hiểu."],["AMB3","Tôi không biết chính xác nên phản ứng thế nào trước gợi ý này."]]),
@@ -308,257 +411,294 @@ const ITEMS={
 };
 const PPR_DESC={1:"từ chối đọc số điện thoại hoặc mã thành viên",2:"bỏ qua yêu cầu thêm thông tin",3:"khai sai thông tin trên app",4:"dùng thông tin không thật khi đăng ký",5:"xóa lịch sử tìm kiếm hoặc mua hàng",6:"yêu cầu xóa dữ liệu hoặc tắt cá nhân hóa"};
 const DEMO=[
-  single("D1","Giới tính của bạn:",[[1,"Nam"],[2,"Nữ"],[3,"Khác"],[9,"Không muốn trả lời"]]),
-  single("D2","Trình độ học vấn cao nhất:",[[1,"THPT trở xuống"],[2,"Trung cấp hoặc cao đẳng"],[3,"Đại học"],[4,"Sau đại học"]]),
-  single("D3","Công việc chính hiện nay:",[[1,"Học sinh, sinh viên"],[2,"Nhân viên văn phòng"],[3,"Kinh doanh, tự doanh"],[4,"Công nhân, lao động phổ thông"],[5,"Nội trợ"],[6,"Nghỉ hưu"],[7,"Khác"]]),
-  single("D4","Thu nhập cá nhân hằng tháng:",[[1,"Dưới 5 triệu đồng"],[2,"Từ 5 đến dưới 10 triệu"],[3,"Từ 10 đến dưới 20 triệu"],[4,"Từ 20 đến dưới 30 triệu"],[5,"Từ 30 triệu trở lên"],[9,"Không muốn trả lời"]]),
-  single("D5","Bạn đang sống ở:",[[1,"Hà Nội"],[2,"TP. Hồ Chí Minh"],[3,"Thành phố trực thuộc trung ương khác"],[4,"Tỉnh khác"]]),
-  single("SERIOUS","Bạn đã trả lời khảo sát này nghiêm túc chưa? Câu trả lời này không ảnh hưởng đến thù lao của bạn.",[[1,"Có, tôi đã trả lời nghiêm túc"],[0,"Không, tôi trả lời qua loa; không nên dùng câu trả lời của tôi"]])
+  single("GEN","Giới tính của bạn:",[[1,"Nam"],[0,"Nữ"],[2,"Khác"],[9,"Không muốn trả lời"]]),
+  single("EDU","Trình độ học vấn cao nhất:",[[1,"Trung học phổ thông trở xuống"],[2,"Cao đẳng / Đại học"],[3,"Sau đại học"],[9,"Không muốn trả lời"]]),
+  single("OCCUPATION","Nghề nghiệp hiện nay:",[[1,"Học sinh / Sinh viên"],[2,"Nhân viên văn phòng"],[3,"Kinh doanh / Tự doanh"],[4,"Công nhân / Lao động phổ thông"],[5,"Nội trợ"],[6,"Thất nghiệp / Đang tìm việc"],[7,"Nghỉ hưu"],[8,"Khác"],[9,"Không muốn trả lời"]]),
+  single("INC","Thu nhập cá nhân hằng tháng:",[[1,"Dưới 10 triệu VNĐ"],[2,"Từ 10 đến dưới 20 triệu VNĐ"],[3,"Từ 20 đến 35 triệu VNĐ"],[4,"Trên 35 triệu VNĐ"],[9,"Không muốn trả lời"]]),
+  single("FREQ_APP","Trong 3 tháng qua, bạn mua hàng qua app hoặc website riêng của các chuỗi bán lẻ với tần suất nào?",[[1,"Hiếm khi / Chưa bao giờ trong 3 tháng qua"],[2,"1–2 lần / tháng"],[3,"1–2 lần / tuần"],[4,"Hàng ngày"]]),
+  single("TECH_FAM","Mức độ am hiểu / quen thuộc của bạn đối với các hệ thống AI gợi ý mua sắm:",[[1,"1 – Rất thấp"],[2,"2"],[3,"3"],[4,"4 – Trung bình"],[5,"5"],[6,"6"],[7,"7 – Rất cao"]]),
+  single("PREV_VIOL","Bạn đã từng gặp sự cố liên quan đến quyền riêng tư trên mạng, chẳng hạn bị rò rỉ thông tin cá nhân, nhận tin nhắn rác hoặc bị lừa đảo qua mạng, chưa?",[[1,"Có"],[0,"Chưa từng"],[9,"Không muốn trả lời"]])
 ];
+
+/* ---------- consent texts ---------- */
 const CONSENT1=`<div class="prose"><h1 class="st">Khảo sát về trải nghiệm mua sắm và gợi ý sản phẩm tại các chuỗi bán lẻ</h1>
-<p style="margin-top:12px">Xin chào! Chúng tôi là nhóm nghiên cứu của {CFG:ORG}. Khảo sát tìm hiểu trải nghiệm của khách khi mua sắm ở các chuỗi bán lẻ qua cả cửa hàng và app, và cảm nhận của khách về các gợi ý sản phẩm, ưu đãi mà chuỗi gửi.</p>
-<ul><li>Thời gian: khoảng 15 phút.</li><li>Tham gia là tự nguyện. Bạn có thể dừng bất cứ lúc nào mà không cần giải thích.{IF:STOP_RULE} {CFG:STOP_RULE}{/IF:STOP_RULE}</li><li>Khảo sát không hỏi họ tên, số điện thoại, email hay mã thành viên của bạn. Câu trả lời chỉ dùng cho nghiên cứu, được phân tích ở dạng tổng hợp, lưu trữ an toàn trên {CFG:STORAGE_PLACE}{IF:STORAGE_TIME} trong {CFG:STORAGE_TIME} rồi xóa{/IF:STORAGE_TIME}.</li><li>Không có câu trả lời đúng hay sai. Hãy trả lời theo trải nghiệm thật của bạn.</li><li>Khảo sát không có rủi ro đáng kể. Nếu thấy câu hỏi nào không thoải mái, bạn có thể dừng.</li>{IF:INCENTIVE}<li>Thù lao: {CFG:INCENTIVE}.</li>{/IF:INCENTIVE}<li>{IF:ETHICS_BOARD}Nghiên cứu đã được {CFG:ETHICS_BOARD} phê duyệt{IF:ETHICS_NO}, số {CFG:ETHICS_NO}{/IF:ETHICS_NO}. {/IF:ETHICS_BOARD}Thắc mắc xin liên hệ {CFG:RESEARCHER}, {CFG:EMAIL}.</li></ul></div>`;
+<p style="margin-top:12px">Xin chào! Chúng tôi là nhóm nghiên cứu của [[Tên trường/viện]]. Khảo sát tìm hiểu trải nghiệm của khách khi mua sắm ở các chuỗi bán lẻ qua cả cửa hàng và app, và cảm nhận của khách về các gợi ý sản phẩm, ưu đãi mà chuỗi gửi.</p>
+<ul><li>Thời gian: khoảng 15 phút.</li><li>Tham gia là tự nguyện. Bạn có thể dừng bất cứ lúc nào mà không cần giải thích. [[Quy định thù lao khi dừng giữa chừng, theo panel]]</li><li>Khảo sát không hỏi họ tên, số điện thoại, email hay mã thành viên của bạn. Câu trả lời chỉ dùng cho nghiên cứu, được phân tích ở dạng tổng hợp, lưu trữ an toàn trong [[thời gian lưu trữ]] rồi xóa.</li><li>Không có câu trả lời đúng hay sai. Hãy trả lời theo trải nghiệm thật của bạn.</li><li>Khảo sát không có rủi ro đáng kể. Nếu thấy câu hỏi nào không thoải mái, bạn có thể dừng.</li><li>Thù lao: [[mức và hình thức]].</li><li>Nghiên cứu đã được [[Hội đồng đạo đức]] phê duyệt, số [[ ]]. Thắc mắc xin liên hệ Lê Phước Bằng (lephuocbang.st@tdtu.edu.vn).</li></ul></div>`;
 const CONSENT23=`<div class="prose"><h1 class="st">Khảo sát về cách khách hàng nhìn nhận gợi ý sản phẩm trên app bán lẻ</h1>
-<p style="margin-top:12px">Xin chào! Chúng tôi là nhóm nghiên cứu của {CFG:ORG}. Bạn sẽ đọc một tình huống mua sắm giả định, xem một màn hình app, rồi trả lời câu hỏi về cảm nhận của bạn.</p>
-<ul><li>Thời gian: khoảng 10 phút.</li><li>Tham gia là tự nguyện; bạn có thể dừng bất cứ lúc nào.{IF:STOP_RULE} {CFG:STOP_RULE}{/IF:STOP_RULE}</li><li>Khảo sát không hỏi họ tên, số điện thoại hay email. Câu trả lời chỉ dùng cho nghiên cứu, phân tích ở dạng tổng hợp, lưu trữ an toàn trên {CFG:STORAGE_PLACE}{IF:STORAGE_TIME} trong {CFG:STORAGE_TIME} rồi xóa{/IF:STORAGE_TIME}.</li><li>Không có câu trả lời đúng hay sai. Khảo sát không có rủi ro đáng kể.</li><li>Ở cuối khảo sát, chúng tôi sẽ giải thích thêm về mục đích nghiên cứu.</li>{IF:INCENTIVE}<li>Thù lao: {CFG:INCENTIVE}.</li>{/IF:INCENTIVE}<li>{IF:ETHICS_BOARD}Nghiên cứu đã được {CFG:ETHICS_BOARD} phê duyệt{IF:ETHICS_NO}, số {CFG:ETHICS_NO}{/IF:ETHICS_NO}. {/IF:ETHICS_BOARD}Liên hệ: {CFG:RESEARCHER}, {CFG:EMAIL}.</li></ul></div>`;
+<p style="margin-top:12px">Xin chào! Tôi là Lê Phước Bằng, học viên tại Trường Đại học Tôn Đức Thắng. Khảo sát này tìm hiểu cách khách hàng cảm nhận về gợi ý sản phẩm trên app bán lẻ. Bạn sẽ đọc một tình huống mua sắm giả định, xem một màn hình app, rồi trả lời một số câu hỏi.</p>
+<ul><li>Thời gian dự kiến: khoảng 10 phút.</li><li>Việc tham gia là tự nguyện. Bạn có thể dừng khảo sát bất cứ lúc nào.</li><li>Khảo sát không hỏi họ tên, số điện thoại hay email của bạn. Câu trả lời chỉ dùng cho nghiên cứu.</li><li>Không có câu trả lời đúng hay sai. Hãy trả lời theo cảm nhận của bạn.</li><li>Ở cuối khảo sát, chúng tôi sẽ giải thích thêm về mục đích nghiên cứu.</li><li>Liên hệ nghiên cứu viên: Lê Phước Bằng — lephuocbang.st@tdtu.edu.vn.</li></ul></div>`;
 const consentQ=single("CONSENT","Tôi đã đọc thông tin trên và đồng ý tham gia.",[[1,"Đồng ý"],[0,"Không đồng ý"]]);
 
 /* ================= Study 1 ================= */
 function eligible(s){return CHAINS.filter(c=>s.ans["SC2_"+c.v]===1&&s.ans["CH_"+c.v]===3)}
-function chooseRetailer(s,v){
-  const set=c=>{s.emb.RETAILER=c.v;s.emb.CATEGORY=c.cat};
-  const ch=CHAINS.find(c=>c.v===v);if(!ch)return null;
-  if(!QUOTA_FULL.includes(v)){set(ch);s.emb.RET_SWITCH=0;return null}
-  const alt=eligible(s).find(c=>!QUOTA_FULL.includes(c.v));
-  if(alt){set(alt);s.emb.RET_SWITCH=1;return null}
-  return {quota:"Chuỗi đủ điều kiện đã đủ quota"};
-}
-const pilotCmt=id=>MODE==="pilot"?[{type:"text",c:"CMT_"+id,t:"Câu nào ở trang này khó hiểu? Ghi mã hoặc chép lại câu đó. (không bắt buộc)",min:0,req:false}]:[];
+function setRetailer(s,v){if(!CHAINS.some(c=>c.v===v))return;s.emb.RETAILER=v;s.emb.CATEGORY=CHAINS.find(c=>c.v===v).cat;s.emb.RET_SWITCH=0}
 const S1=[
- {id:"consent",blocks:[html(s=>fmt(s,CONSENT1)),consentQ],onNext:s=>s.ans.CONSENT===0?{declined:1}:null},
- {id:"sc1",blocks:[{type:"number",c:"SC1",t:"Bạn bao nhiêu tuổi?",min:10,max:99}],onNext:s=>s.ans.SC1<18?{out:"SC1_UNDER18"}:null},
- {id:"sc2",blocks:[{type:"multi",c:"SC2",t:"Trong 6 tháng qua, bạn đã mua hàng ở chuỗi nào dưới đây? (Chọn tất cả chuỗi đã mua)",opts:CHAINS.map(c=>[c.v,esc(c.name)]),excl:[0,"Không chuỗi nào ở trên"],shuffle:true}],
-  onNext:s=>CHAINS.some(c=>s.ans["SC2_"+c.v]===1)?null:{out:"SC2_NONE"}},
- {id:"sc3",blocks:[{type:"grid",c:"CH",t:"Trong 6 tháng qua, bạn mua ở mỗi chuỗi sau qua kênh nào? Không tính mua qua sàn thương mại điện tử hay app giao hàng của bên khác.",
-   rows:s=>CHAINS.filter(c=>s.ans["SC2_"+c.v]===1).map(c=>[c.v,esc(c.name)]),
+ {id:"consent",label:"Phần 0 · Đồng ý",blocks:[html(()=>fmt(S,CONSENT1)),consentQ],onNext:s=>s.ans.CONSENT===0?{declined:1}:null},
+ {id:"sc1",label:"Phần 1 · SC1 tuổi",blocks:[{type:"number",c:"SC1",t:"Bạn bao nhiêu tuổi?",min:10,max:99}],onNext:s=>s.ans.SC1<18?{out:"SC1 dưới 18 tuổi"}:null},
+ {id:"sc2",label:"Phần 1 · SC2 chuỗi đã mua",blocks:[{type:"multi",c:"SC2",t:"Trong 6 tháng qua, bạn đã mua hàng ở chuỗi nào dưới đây? (Chọn tất cả chuỗi đã mua)",opts:CHAINS.map(c=>[c.v,`<span class="ph">${c.name}</span> <span class="sub">(${CATS[c.cat].n})</span>`]),excl:[0,"Không chuỗi nào ở trên"],shuffle:true}],
+  onNext:s=>CHAINS.some(c=>s.ans["SC2_"+c.v]===1)?null:{out:"SC2: không mua ở chuỗi nào trong danh sách"}},
+ {id:"sc3",label:"Phần 1 · SC3 kênh mua",blocks:[{type:"grid",c:"CH",t:"Trong 6 tháng qua, bạn mua ở mỗi chuỗi sau qua kênh nào? Không tính mua qua sàn thương mại điện tử hay app giao hàng của bên khác.",
+   rows:s=>{const r=CHAINS.filter(c=>s.ans["SC2_"+c.v]===1);return (r.length?r:CHAINS.slice(0,2)).map(c=>[c.v,`<span class="ph">${c.name}</span>`])},
    cols:[[1,"Chỉ tại cửa hàng"],[2,"Chỉ qua app hoặc website của chuỗi"],[3,"Cả tại cửa hàng lẫn qua app hoặc website"]]}],
-  onNext:s=>{const e=eligible(s);if(!e.length)return{out:"SC3_NO_OMNI"};if(e.length===1){const r=chooseRetailer(s,e[0].v);if(r)return r}return null}},
- {id:"sc4",show:s=>eligible(s).length>=2,blocks:[{type:"single",c:"SC4",t:"Trong các chuỗi sau, bạn mua ở chuỗi nào nhiều nhất?",opts:s=>eligible(s).map(c=>[c.v,esc(c.name)])}],
-  onNext:s=>chooseRetailer(s,s.ans.SC4)},
- {id:"sc5",blocks:[html(()=>`<p class="intro">Gợi ý hoặc ưu đãi cá nhân hóa là sản phẩm, mã giảm giá hay khuyến mãi mà chuỗi chọn riêng cho từng khách, ví dụ mục "Gợi ý cho bạn" trên app, hoặc tin nhắn ưu đãi cho loại sản phẩm bạn quan tâm. Quảng cáo gửi chung cho mọi người không tính. Nếu không chắc, hãy chọn theo cảm nhận của bạn.</p>`),
+  onNext:s=>{const e=eligible(s);if(!e.length)return{out:"SC3: không có chuỗi nào mua qua cả hai kênh"};if(e.length===1)setRetailer(s,e[0].v);return null}},
+ {id:"sc4",label:"Phần 1 · SC4 chuỗi mua nhiều nhất",show:s=>eligible(s).length>=2,blocks:[{type:"single",c:"SC4",t:"Trong các chuỗi sau, bạn mua ở chuỗi nào nhiều nhất?",opts:s=>{const e=eligible(s);return (e.length?e:CHAINS.slice(0,2)).map(c=>[c.v,`<span class="ph">${c.name}</span>`])}}],
+  onNext:s=>{setRetailer(s,s.ans.SC4);return null}},
+ {id:"sc5",label:"Phần 1 · SC5 nhận gợi ý",blocks:[html(s=>`<p class="intro">Gợi ý hoặc ưu đãi cá nhân hóa là sản phẩm, mã giảm giá hay khuyến mãi mà chuỗi chọn riêng cho từng khách, ví dụ mục "Gợi ý cho bạn" trên app, hoặc tin nhắn ưu đãi cho loại sản phẩm bạn quan tâm. Quảng cáo gửi chung cho mọi người không tính. Nếu không chắc, hãy chọn theo cảm nhận của bạn.</p>`),
    {type:"multi",c:"PCH",t:"Trong 3 tháng qua, bạn có nhận gợi ý hoặc ưu đãi cá nhân hóa từ {A} qua các kênh sau không? (Chọn tất cả)",opts:PCH,excl:[0,"Không nhận qua kênh nào ở trên, hoặc không nhớ"]}],
-  onNext:s=>PCH.some(([v])=>s.ans["PCH_"+v]===1)?null:{out:"SC5_NO_PERSONALISED"}},
- {id:"sc67",blocks:[single("SC6","Bạn có tài khoản thành viên của {A} không?",[[1,"Có, đăng nhập bằng số điện thoại"],[2,"Có, đăng nhập cách khác"],[3,"Không"],[4,"Không chắc"]]),
+  onNext:s=>PCH.some(([v])=>s.ans["PCH_"+v]===1)?null:{out:"SC5: không nhận gợi ý cá nhân hóa"}},
+ {id:"sc67",label:"Phần 1 · SC6–SC7",blocks:[single("SC6","Bạn có tài khoản thành viên của {A} không?",[[1,"Có, đăng nhập bằng số điện thoại"],[2,"Có, đăng nhập cách khác"],[3,"Không"],[4,"Không chắc"]]),
    single("SC7","Bạn mua ở {A}, tính cả cửa hàng và app, bao lâu một lần?",[[1,"Ít hơn 1 lần/tháng"],[2,"Khoảng 1 lần/tháng"],[3,"2–3 lần/tháng"],[4,"Khoảng 1 lần/tuần"],[5,"Nhiều hơn 1 lần/tuần"]])]},
- {id:"rs",blocks:[intro("Các câu sau hỏi về mối quan hệ hiện tại của bạn với {A}. Bạn đồng ý với mỗi câu ở mức nào?"),lik(ITEMS.RS),...pilotCmt("rs")]},
- {id:"pci",blocks:[intro("Trong khảo sát này, \"app\" là app hoặc website mua sắm của {A}. Các câu sau hỏi về cách {A} phục vụ bạn trên app và tại cửa hàng."),lik(ITEMS.PCI),...pilotCmt("pci")]},
- {id:"recall",blocks:[html(s=>`<p class="lead">Nhiều chuỗi bán lẻ dùng hệ thống tự động, thường gọi là AI, để chọn sản phẩm gợi ý và ưu đãi cho từng khách. Ảnh dưới đây chỉ là ví dụ minh họa, không phải của ${fmt(s,"{A}")}.</p><div class="stimwrap">${fit(recallScreen(),300)}</div>`),
+ {id:"rs",label:"Phần 2 · RS",blocks:[intro("Các câu sau hỏi về mối quan hệ hiện tại của bạn với {A}. Bạn đồng ý với mỗi câu ở mức nào?"),lik(ITEMS.RS)]},
+ {id:"pci",label:"Phần 3 · PCI",blocks:[intro("Trong khảo sát này, \"app\" là app hoặc website mua sắm của {A}. Các câu sau hỏi về cách {A} phục vụ bạn trên app và tại cửa hàng."),lik(ITEMS.PCI)]},
+ {id:"recall",label:"Phần 4 · Gợi nhớ",blocks:[html(s=>`<p class="lead">Nhiều chuỗi bán lẻ dùng hệ thống tự động, thường gọi là AI, để chọn sản phẩm gợi ý và ưu đãi cho từng khách. Ảnh dưới đây chỉ là ví dụ minh họa, không phải của ${fmt(s,"{A}")}.</p><div class="stimwrap">${fit(recallScreen(),300)}<span class="rnote">Ảnh: IMG_RECALL</span></div>`),
    {type:"single",c:"REC1",t:"Hãy nhớ lại các gợi ý sản phẩm hoặc ưu đãi dành riêng cho bạn mà {A} gửi trong 3 tháng qua. Bạn nhận chúng qua đâu nhiều nhất?",opts:s=>{const o=PCH.filter(([v])=>s.ans["PCH_"+v]===1);return o.length?o:PCH}},
    {type:"text",c:"REC2",t:"Hãy mô tả ngắn một gợi ý hoặc ưu đãi như vậy mà bạn còn nhớ: sản phẩm gì, bạn nhận khi nào và qua đâu.",min:10,req:true}]},
- {id:"pap",blocks:[intro("Các câu sau hỏi về các gợi ý và ưu đãi mà {A} gửi cho bạn, như bạn vừa nhớ lại."),lik(ITEMS.PAP),...pilotCmt("pap")]},
- {id:"ppv",blocks:[intro("Các câu sau hỏi về lợi ích của các gợi ý và ưu đãi đó với bạn."),lik(ITEMS.PPV),...pilotCmt("ppv")]},
- {id:"loy",blocks:[intro("Các câu sau hỏi về dự định của bạn với {A}."),lik(ITEMS.LOY),...pilotCmt("loy")]},
- {id:"filler",blocks:[intro("Phần tiếp theo gồm vài câu hỏi ngắn về sở thích và thói quen chung, không liên quan đến {A}."),lik(ITEMS.ATCB),
+ {id:"pap",label:"Phần 5 · PAP",blocks:[intro("Các câu sau hỏi về các gợi ý và ưu đãi mà {A} gửi cho bạn, như bạn vừa nhớ lại."),lik(ITEMS.PAP1)]},
+ {id:"ppv",label:"Phần 6 · PPV",blocks:[intro("Các câu sau hỏi về lợi ích của các gợi ý và ưu đãi đó với bạn."),lik(ITEMS.PPV1)]},
+ {id:"loy",label:"Phần 7 · LOY",blocks:[intro("Các câu sau hỏi về dự định của bạn với {A}."),lik(ITEMS.LOY1)]},
+ {id:"filler",label:"Phần 8 · Câu hỏi đệm",blocks:[intro("Phần tiếp theo gồm vài câu hỏi ngắn về sở thích và thói quen chung, không liên quan đến {A}."),lik(ITEMS.ATCB),
    single("FIL1","Bạn thường đi mua sắm cùng ai?",[[1,"Một mình"],[2,"Với gia đình"],[3,"Với bạn bè"],[4,"Tùy lúc"]]),
    single("FIL2","Bạn thường mua sắm vào khoảng thời gian nào trong ngày?",[[1,"Sáng"],[2,"Trưa"],[3,"Chiều"],[4,"Tối"],[5,"Không cố định"]])]},
- {id:"crp",blocks:[intro("Các câu sau hỏi về cảm giác của bạn khi nhận các gợi ý và ưu đãi dành riêng cho bạn từ {A}. Không có câu trả lời đúng hay sai."),lik(ITEMS.CRP),...pilotCmt("crp")]},
- {id:"pi",show:()=>MODE==="pilot",blocks:[intro("Các câu sau cũng hỏi về cảm giác của bạn với các gợi ý và tính năng AI của {A}."),lik(ITEMS.PI),...pilotCmt("pi")]},
- {id:"iuipc",blocks:[intro("Các câu sau hỏi quan điểm chung của bạn về việc doanh nghiệp thu thập và dùng thông tin cá nhân, không riêng {A}."),lik(ITEMS.IUIPC.concat([{c:"IRI2",t:"Câu này dùng để kiểm tra sự chú ý. Hãy chọn \"Đồng ý\"."}])),...pilotCmt("iuipc")]},
- {id:"ppr",blocks:[intro("Trong 3 tháng qua, sau khi nhận gợi ý hoặc ưu đãi cá nhân hóa từ {A}, bạn đã làm việc sau bao nhiêu lần? Nếu chưa gặp tình huống đó, hãy chọn \"Chưa bao giờ\"."),lik(ITEMS.PPR,{scale:"FREQ",shuffle:false}),...pilotCmt("ppr")]},
- {id:"pprr",show:s=>[1,2,3,4,5,6].some(k=>s.ans["PPR"+k]>=2),
-  blocks:s=>[1,2,3,4,5,6].filter(k=>s.ans["PPR"+k]>=2).map(k=>single("PPR_R"+k,`Lý do chính khiến bạn ${PPR_DESC[k]} là gì?`,[[1,"Không muốn nhận thêm quảng cáo"],[2,"Thấy các gợi ý biết quá nhiều về mình"],[3,"Lo dữ liệu bị lộ hoặc bị bán"],[4,"Vội hoặc thấy bất tiện"],[5,"Khác (ghi rõ)"]],{other:5}))},
- {id:"pcdl",blocks:[intro("Các câu sau hỏi suy nghĩ của bạn về cách {A} dùng thông tin mua sắm của bạn. Hãy trả lời theo cảm nhận, kể cả khi bạn không chắc."),lik(ITEMS.PCDL),...pilotCmt("pcdl")]},
- {id:"tai",blocks:[intro("Các câu sau hỏi quan điểm chung của bạn về các hệ thống AI nói chung, không riêng AI của {A}."),lik(ITEMS.TAI),...pilotCmt("tai")]},
- {id:"al",blocks:[intro("Các câu sau hỏi về hiểu biết chung của bạn về thuật toán và AI trên mạng, không riêng {A}."),lik(ITEMS.AL),...pilotCmt("al")]},
- {id:"pse",blocks:[intro("Các câu sau hỏi về việc bạn tự bảo vệ thông tin cá nhân trên mạng nói chung."),lik(ITEMS.PSE),...pilotCmt("pse")]},
- {id:"demo",blocks:[...DEMO,{type:"text",c:"D6",t:"Có câu hỏi nào khó hiểu không? Bạn muốn góp ý gì? (không bắt buộc)",min:0,req:false}]}
+ {id:"crp",label:"Phần 9 · CRP",blocks:[intro("Các câu sau hỏi về cảm giác của bạn khi nhận các gợi ý và ưu đãi dành riêng cho bạn từ {A}. Không có câu trả lời đúng hay sai."),lik(ITEMS.CRP1)]},
+ {id:"iuipc",label:"Phần 10 · IUIPC",blocks:[intro("Các câu sau hỏi quan điểm chung của bạn về việc doanh nghiệp thu thập và dùng thông tin cá nhân, không riêng {A}."),lik(ITEMS.IUIPC.concat([{c:"IRI2",t:"Câu này dùng để kiểm tra sự chú ý. Hãy chọn \"Đồng ý\"."}]))]},
+ {id:"ppr",label:"Phần 11 · PPR",blocks:[intro("Trong 3 tháng qua, sau khi nhận gợi ý hoặc ưu đãi cá nhân hóa từ {A}, bạn đã làm việc sau bao nhiêu lần? Nếu chưa gặp tình huống đó, hãy chọn \"Chưa bao giờ\"."),lik(ITEMS.PPR,{scale:"FREQ",shuffle:false})]},
+ {id:"pprr",label:"Phần 11 · Lý do PPR",show:s=>[1,2,3,4,5,6].some(k=>s.ans["PPR"+k]>=2),
+  blocks:s=>{const ks=[1,2,3,4,5,6].filter(k=>s.ans["PPR"+k]>=2);
+   if(!ks.length)return[html(()=>`<p class="rnote" style="display:block">Không có hành vi nào từ 2 lần trở lên, nên người trả lời thật sẽ không thấy trang này.</p>`)];
+   return ks.map(k=>single("PPR_R"+k,`Lý do chính khiến bạn ${PPR_DESC[k]} là gì?`,[[1,"Không muốn nhận thêm quảng cáo"],[2,"Thấy các gợi ý biết quá nhiều về mình"],[3,"Lo dữ liệu bị lộ hoặc bị bán"],[4,"Vội hoặc thấy bất tiện"],[5,"Khác (ghi rõ)"]],{other:5}))}},
+ {id:"pcdl",label:"Phần 12 · PCDL",blocks:[intro("Các câu sau hỏi suy nghĩ của bạn về cách {A} dùng thông tin mua sắm của bạn. Hãy trả lời theo cảm nhận, kể cả khi bạn không chắc."),lik(ITEMS.PCDL1)]},
+ {id:"tai",label:"Phần 13 · TAI",blocks:[intro("Các câu sau hỏi quan điểm chung của bạn về các hệ thống AI nói chung, không riêng AI của {A}."),lik(ITEMS.TAI)]},
+ {id:"al",label:"Phần 14 · AL",blocks:[intro("Các câu sau hỏi về hiểu biết chung của bạn về thuật toán và AI trên mạng, không riêng {A}."),lik(ITEMS.AL)]},
+ {id:"pse",label:"Phần 15 · PSE",blocks:[intro("Các câu sau hỏi về việc bạn tự bảo vệ thông tin cá nhân trên mạng nói chung."),lik(ITEMS.PSE)]},
+ {id:"demo",label:"Phần 16 · Nhân khẩu học",blocks:[...DEMO,{type:"text",c:"D6",t:"Có câu hỏi nào khó hiểu không? Bạn muốn góp ý gì? (không bắt buộc)",min:0,req:false}]}
 ];
 
 /* ================= Studies 2 & 3 ================= */
 async function assign(s){
-  let c,src;
-  if(TEST){c=Math.floor(Math.random()*8);src="test"}
-  else{
-    try{
-      const r=await fetch(API+"condition/",{method:"POST",headers:{"Content-Type":"application/json",Accept:"*/*"},body:JSON.stringify({experimentID:DP_ID})});
-      const j=await r.json().catch(()=>({}));
-      if(r.ok&&Number.isInteger(j.condition)){c=((j.condition%8)+8)%8;src="datapipe"}
-      else s.emb.COND_ERROR=j.error||("HTTP_"+r.status);
-    }catch(e){s.emb.COND_ERROR="NETWORK"}
-    if(c===undefined){c=Math.floor(Math.random()*8);src="local"}
+  // DataPipe returns condition indices 0..7 in sequence when the dashboard's
+  // "Assign conditions in sequence" option is ON and set to 8 conditions.
+  // Each pair is one INTEG x PERS cell, split evenly across profiles X and Y.
+  const config = window.STUDY_CONFIG;
+  if (!config || !config.experimentID || !config.conditionEndpoint) {
+    throw new Error("Missing DataPipe condition settings in config.js");
   }
-  const g=Math.floor(c/2)+1;
-  s.emb.CONDITION=c;s.emb.COND_SOURCE=src;s.emb.GROUP=g;s.emb.CELL=c+1;s.emb.PROFILE=c%2;
-  s.emb.INTEG=(g-1)>>1;
-  if(STUDY===2)s.emb.PERS=(g-1)&1;else s.emb.BLOCK=(g-1)&1;
-  s.emb.ORDER=Math.random()<.5?1:2;
+  const response = await fetch(config.conditionEndpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ experimentID: config.experimentID })
+  });
+  let body = {};
+  try { body = await response.json(); } catch (_) {}
+  const condition = Number(body.condition);
+  if (!response.ok || !Number.isInteger(condition) || condition < 0 || condition > 7) {
+    throw new Error(body.error || body.message || `Condition assignment failed (HTTP ${response.status})`);
+  }
+
+  const mainCell = Math.floor(condition / 2); // 0..3 for INTEG x PERS
+  s.emb.INTEG = Math.floor(mainCell / 2);    // 0 = low, 1 = high
+  s.emb.PERS = mainCell % 2;                 // 0 = low, 1 = high
+  s.emb.PROFILE = condition % 2;             // 0 = profile X, 1 = profile Y
+  s.emb.CONDITION_INDEX = condition;         // DataPipe's 0-based condition number
+  s.emb.ORDER = 2;                           // Prespecified order: CRP before PPV
+  cellUpdate(s);
 }
-function k1(s){return `<div class="scen"><div class="tag">Tình huống</div><p>Trên các trang tiếp theo, bạn sẽ đọc một tình huống mua sắm. Hãy đọc kỹ và hình dung bạn là người trong tình huống. Chuỗi A là một chuỗi bán lẻ giả định.</p><p>Hãy tưởng tượng bạn là khách quen của Chuỗi A, một chuỗi siêu thị mini có khoảng 300 cửa hàng ở các thành phố lớn và có app mua sắm riêng. Bạn thường ghé cửa hàng Chuỗi A gần nhà và cũng hay mua trên app của chuỗi. App có mục gợi ý sản phẩm do hệ thống AI của Chuỗi A tạo ra.</p><p>Về đồ ăn sáng, bạn thích <b>${PROFILE_TXT[s.emb.PROFILE??0]}</b>.</p></div>`}
+function cellUpdate(s){
+  if(s.emb.INTEG==null)return;
+  const g=s.emb.INTEG*2+(s.study===2?s.emb.PERS:s.emb.BLOCK)+1;
+  s.emb.GROUP=g;
+  // Study 2 records four main INTEG x PERS groups and eight cells after balancing profile X/Y.
+  s.emb.CELL=s.study===2?g:(g-1)*2+s.emb.PROFILE+1;
+}
+function k1(s){return `<div class="scen"><div class="tag">Tình huống</div>
+<p>Trên các trang tiếp theo, bạn sẽ đọc một tình huống mua sắm. Hãy đọc kỹ và hình dung bạn là người trong tình huống. Chuỗi A là một chuỗi bán lẻ giả định.</p>
+<p>Hãy tưởng tượng bạn là khách quen của Chuỗi A, một chuỗi siêu thị mini có khoảng 300 cửa hàng ở các thành phố lớn và có app mua sắm riêng. Bạn thường ghé cửa hàng Chuỗi A gần nhà và cũng hay mua trên app của chuỗi. App có mục gợi ý sản phẩm do hệ thống AI của Chuỗi A tạo ra.</p>
+<p>Về đồ ăn sáng, bạn thích <b>${PROFILE_TXT[s.emb.PROFILE??0]}</b>.</p></div><p class="rnote">Hồ sơ ${s.emb.PROFILE===1?"Y":"X"} (PROFILE = ${s.emb.PROFILE??0})</p>`}
+function k3(s){const o=screenFor(s);return `<p class="lead">Sáng nay bạn mở app Chuỗi A và thấy màn hình sau:</p><div class="stimwrap">${fit(appScreen(o),336)}<span class="rnote">Ảnh: ${imgName(o)}</span></div>`}
 function thumb(s){const o=screenFor(s);return html(()=>`<div class="thumbrow">${fit(appScreen(o),window.innerWidth<620?120:150)}<div class="cap">Màn hình bạn vừa xem trên app Chuỗi A.<br><span class="rnote">${imgName(o)}</span></div></div>`)}
 const xLead=intro("Giả sử bạn là khách của Chuỗi A trong tình huống vừa đọc. Hãy cho biết mức đồng ý của bạn với các câu sau.");
 function outPages(s){
-  const seq=[["ppv",[thumb(s),xLead,lik(ITEMS.xPPV)]],["crp",[thumb(s),xLead,lik(ITEMS.xCRP)]]];
-  if(STUDY===3)seq.push(["amb",[thumb(s),xLead,lik(ITEMS.xAMB)]]);
-  if((s.emb.ORDER??1)===2){seq.push(seq.shift())}
+  const ppv=[thumb(s),xLead,lik(ITEMS.xPPV)], crp=[thumb(s),xLead,lik(ITEMS.xCRP)], amb=[thumb(s),xLead,lik(ITEMS.xAMB)];
+  // Study 2 follows the prespecified order: CRP, then PPV. Study 3 keeps its own order factor.
+  const seq=s.study===2?[["CRP",crp],["PPV",ppv]]:[["PPV",ppv],["CRP",crp],["AMB",amb]];
+  if(s.study===3&&(s.emb.ORDER??1)===2){const p=seq.shift();seq.push(p)}
   return seq;
 }
-function debrief(){
-  const p3=STUDY===3?`<p>Ở một số phiên bản, màn hình app có dòng nói rằng gợi ý chỉ dựa trên các sản phẩm bạn đã xem trong app và Chuỗi A không dùng lịch sử mua tại cửa hàng. Dòng này cũng do nhóm nghiên cứu viết. Nó không cho biết các chuỗi bán lẻ thật dùng dữ liệu của bạn ra sao. Muốn biết một chuỗi cụ thể dùng dữ liệu thế nào, bạn có thể xem chính sách quyền riêng tư của chuỗi đó.</p>`:"";
-  const g=STUDY===2?"app và cửa hàng của Chuỗi A liên thông nhiều hay ít, và gợi ý theo sở thích riêng hay gợi ý chung. Nghiên cứu muốn biết hai yếu tố này ảnh hưởng thế nào đến cảm nhận của khách về lợi ích của gợi ý, cảm giác khó chịu và ý định gắn bó, cũng như suy đoán của khách về cách nhà bán lẻ dùng dữ liệu."
-    :"app và cửa hàng của Chuỗi A liên thông nhiều hay ít, và màn hình app có hay không có dòng nói về nguồn dữ liệu. Nghiên cứu muốn biết khi app và cửa hàng liên thông, khách có tự suy ra rằng dữ liệu mua sắm đang được ghép lại hay không, và suy luận đó ảnh hưởng thế nào đến cảm nhận về gợi ý.";
-  return fmt(S,`<div class="prose"><h2 class="pt">Cảm ơn bạn! Xin giải thích thêm về nghiên cứu này.</h2><p style="margin-top:10px">Chuỗi A là chuỗi giả định. Mô tả dịch vụ và màn hình app được tạo riêng cho nghiên cứu, không mô tả bất kỳ chuỗi bán lẻ thật nào.</p>${p3}<p>Người tham gia được chia ngẫu nhiên để xem các phiên bản khác nhau: ${g} Chúng tôi chưa nói rõ điều này từ đầu vì biết trước có thể làm thay đổi cách bạn trả lời.</p><p>Xin đừng kể nội dung tình huống cho người có thể tham gia sau. Nếu có thắc mắc, liên hệ {CFG:RESEARCHER}, {CFG:EMAIL}.</p></div>`);
-}
-function expPages(){
+function expPages(study){
   const P=[
-   {id:"consent",blocks:[html(s=>fmt(s,CONSENT23)),consentQ],onNext:s=>s.ans.CONSENT===0?{declined:1}:null},
-   {id:"screen",blocks:[{type:"number",c:"SC1",t:"Bạn bao nhiêu tuổi?",min:10,max:99},
-     single("SC2","Bạn đã từng mua hàng ở một chuỗi bán lẻ có cả cửa hàng và app mua sắm riêng (ví dụ chuỗi siêu thị, nhà thuốc, điện máy) chưa?",[[1,"Có, cả tại cửa hàng và qua app của chuỗi"],[2,"Chỉ tại cửa hàng"],[3,"Chỉ qua app của chuỗi"],[4,"Chưa từng"]]),
-     single("SC3",STUDY===2?"Trong 3 tháng qua, bạn có tham gia khảo sát nào về một chuỗi bán lẻ tên \"Chuỗi A\" không?":"Trong 6 tháng qua, bạn có tham gia khảo sát nào về một chuỗi bán lẻ tên \"Chuỗi A\" không?",[[1,"Có"],[0,"Không"],[2,"Không nhớ"]])],
-    onNext:s=>s.ans.SC1<18?{out:"SC1_UNDER18"}:s.ans.SC2!==1?{out:"SC2_NOT_OMNI"}:s.ans.SC3===1?{out:"SC3_SEEN_CHUOI_A"}:null},
-   {id:"imc",blocks:[html(()=>`<p class="intro">Nhiều người làm khảo sát trực tuyến không đọc kỹ hướng dẫn. Để cho thấy bạn đã đọc đoạn này, hãy bỏ qua câu hỏi bên dưới: chọn "Khác" và gõ "đã đọc" vào ô bên cạnh.</p>`),
+   {id:"consent",label:"Đồng ý",blocks:[html(()=>fmt(S,CONSENT23)),consentQ],onNext:s=>s.ans.CONSENT===0?{declined:1}:null},
+   {id:"screen",label:"Sàng lọc",blocks:s=>[
+     single("AGE","Độ tuổi của bạn:",[[1,"Dưới 18 tuổi"],[2,"18–24 tuổi"],[3,"25–34 tuổi"],[4,"35–44 tuổi"],[5,"45–54 tuổi"],[6,"Từ 55 tuổi trở lên"]]),
+     html(()=>`<p class="intro">Ở các câu tiếp theo, "app/website của chuỗi" là ứng dụng hoặc website mua sắm chính thức do chính chuỗi bán lẻ cung cấp. Không tính đơn hàng đặt qua sàn thương mại điện tử hoặc ứng dụng giao hàng của bên thứ ba.</p>`),
+     single("SC2","Trong 6 tháng qua, bạn đã mua hàng qua cả hai kênh của cùng một chuỗi siêu thị, siêu thị mini hoặc cửa hàng tiện lợi nào chưa?",[[1,"Có, tôi đã mua cả tại cửa hàng và qua app/website chính thức của cùng một chuỗi"],[2,"Tôi chỉ mua tại cửa hàng"],[3,"Tôi chỉ mua qua app/website của chuỗi"],[4,"Tôi chưa từng mua qua các kênh trên"],[5,"Không nhớ / Không chắc"]]),
+   ],
+    onNext:async s=>{
+      if(s.ans.AGE===1)return {out:"AGE: dưới 18 tuổi"};
+      if(s.ans.SC2!==1)return {out:"SC2: chưa có kinh nghiệm mua qua cả cửa hàng và app/website chính thức của cùng một chuỗi siêu thị, siêu thị mini hoặc cửa hàng tiện lợi"};
+      if(study===2) await assign(s);
+      return null;
+    }},
+   {id:"imc",label:"Câu chú ý (IMC)",show:s=>study===3,blocks:[html(()=>`<p class="intro">Đây là câu hỏi kiểm tra xem bạn có đọc hướng dẫn hay không. Vui lòng chọn "Khác" và nhập đúng cụm từ "đã đọc" vào ô bên cạnh.</p>`),
      single("IMCQ","Bạn thường đọc tin tức ở đâu nhất?",[[1,"Facebook"],[2,"YouTube"],[3,"TikTok"],[4,"Báo điện tử"],[5,"Zalo"],[6,"Khác (ghi rõ)"]],{other:6,otherOptional:true})],
-    onNext:s=>{const ok=s.ans.IMCQ===6&&norm(s.ans.IMCQ_TEXT).includes("da doc");s.emb.IMC=ok?1:0;return ok?null:{out:"IMC_FAIL"}}},
-   {id:"pre",blocks:[single("PRE1","Bạn mua thực phẩm hoặc đồ ăn sáng ở siêu thị mini hoặc cửa hàng tiện lợi bao lâu một lần?",[[1,"Ít hơn 1 lần/tháng"],[2,"Khoảng 1 lần/tháng"],[3,"2–3 lần/tháng"],[4,"Khoảng 1 lần/tuần"],[5,"Nhiều hơn 1 lần/tuần"]]),
+    onNext:s=>{const ok=s.ans.IMCQ===6&&norm(s.ans.IMCQ_TEXT).includes("da doc");s.emb.IMC=ok?1:0;return ok?null:{out:"IMC: trượt câu kiểm tra chú ý"}}},
+   {id:"pre",label:"PRE1–PRE2",show:s=>study===3,blocks:[single("PRE1","Bạn mua thực phẩm hoặc đồ ăn sáng ở siêu thị mini hoặc cửa hàng tiện lợi bao lâu một lần?",[[1,"Ít hơn 1 lần/tháng"],[2,"Khoảng 1 lần/tháng"],[3,"2–3 lần/tháng"],[4,"Khoảng 1 lần/tuần"],[5,"Nhiều hơn 1 lần/tuần"]]),
      single("PRE2","Bạn có dùng app mua sắm của chuỗi siêu thị hoặc cửa hàng tiện lợi nào không?",[[1,"Thường xuyên"],[2,"Thỉnh thoảng"],[3,"Không"]])],
-    onNext:async s=>{await assign(s);return null}},
-   {id:"k1",min:15,blocks:[html(s=>k1(s))]},
-   {id:"k2",min:15,blocks:[html(s=>`<div class="stimwrap">${k2Card(s.emb.INTEG??1)}</div>`)]},
-   {id:"k3",min:STUDY===2?10:12,blocks:[html(s=>{const o=screenFor(s);return `<p class="lead">Sáng nay bạn mở app Chuỗi A và thấy màn hình sau:</p><div class="stimwrap">${fit(appScreen(o),336)}<span class="rnote">${imgName(o)}</span></div>`})]},
-   {id:"out1",blocks:s=>outPages(s)[0][1],tid:s=>outPages(s)[0][0]},
-   {id:"out2",blocks:s=>outPages(s)[1][1],tid:s=>outPages(s)[1][0]}];
-  if(STUDY===3)P.push({id:"out3",blocks:s=>outPages(s)[2][1],tid:s=>outPages(s)[2][0]});
+    onNext:s=>{assign(s);return null}},
+   {id:"k1",label:"K1 · Hồ sơ khách",min:15,tcode:"T_K1",blocks:[html(s=>k1(s))]},
+   {id:"k2",label:"K2 · Mô tả tích hợp",min:15,tcode:"T_K2",blocks:[html(s=>`<div class="stimwrap">${k2Card(s.emb.INTEG??1)}<span class="rnote">Ảnh: K2_${(s.emb.INTEG??1)?"CAO":"THAP"} (INTEG = ${s.emb.INTEG??1})</span></div>`)]},
+   {id:"k3",label:"K3 · Màn hình gợi ý",min:study===2?10:12,tcode:"T_K3",blocks:[html(s=>k3(s))]},
+   {id:"out1",label:"Kết quả · trang 1",blocks:s=>outPages(s)[0][1],dyn:s=>outPages(s)[0][0]},
+   {id:"out2",label:"Kết quả · trang 2",blocks:s=>outPages(s)[1][1],dyn:s=>outPages(s)[1][0]}
+  ];
+  if(study===3)P.push({id:"out3",label:"Kết quả · trang 3",blocks:s=>outPages(s)[2][1],dyn:s=>outPages(s)[2][0]});
   P.push(
-   {id:"loy",blocks:[intro("Nếu bạn là khách của Chuỗi A trong tình huống này, bạn đồng ý với các câu sau ở mức nào?"),lik(ITEMS.xLOY)]},
-   {id:"attreal",blocks:[{type:"sd",t:"Nhìn chung, bạn thấy Chuỗi A thế nào?",items:[{c:"ATT1",l:"Tệ",r:"Tốt"},{c:"ATT2",l:"Không có thiện cảm",r:"Có thiện cảm"},{c:"ATT3",l:"Không thích",r:"Thích"}]},lik(ITEMS.REAL,{shuffle:false})]},
-   {id:"mc",blocks:[intro("Dựa trên tình huống và màn hình app bạn đã xem, bạn đồng ý với các câu sau ở mức nào?"),lik(ITEMS.xMC)]},
-   {id:"pcdl",blocks:[intro("Các câu sau hỏi suy nghĩ của bạn về cách Chuỗi A dùng thông tin mua sắm của bạn trong tình huống này. Hãy trả lời theo cảm nhận, kể cả khi bạn không chắc."),lik(ITEMS.xPCDL)]});
-  if(STUDY===3)P.push(
-   {id:"src",blocks:[single("SRC","Theo những gì bạn thấy trên màn hình app, gợi ý của Chuỗi A dựa trên thông tin nào?",[[1,"Chỉ các sản phẩm tôi đã xem trong app"],[2,"Cả lịch sử mua của tôi tại cửa hàng"],[3,"Màn hình không nói gì về việc này"],[4,"Tôi không nhớ"]])],
+   {id:"loy",label:"LOY",blocks:[intro("Nếu bạn là khách của Chuỗi A trong tình huống này, bạn đồng ý với các câu sau ở mức nào?"),lik(ITEMS.xLOY)]},
+   {id:"attreal",label:"ATT và REAL",blocks:[{type:"sd",t:"Nhìn chung, bạn thấy Chuỗi A thế nào?",items:[{c:"ATT1",l:"Tệ",r:"Tốt"},{c:"ATT2",l:"Không có thiện cảm",r:"Có thiện cảm"},{c:"ATT3",l:"Không thích",r:"Thích"}]},lik(ITEMS.REAL,{shuffle:false})]},
+   {id:"mc",label:"Kiểm tra thao tác (PAP, MC_PCI)",blocks:[intro("Dựa trên tình huống và màn hình app bạn đã xem, bạn đồng ý với các câu sau ở mức nào?"),lik(ITEMS.xMC)]},
+   {id:"pcdl",label:"PCDL",blocks:[intro("Các câu sau hỏi suy nghĩ của bạn về cách Chuỗi A dùng thông tin mua sắm của bạn trong tình huống này. Hãy trả lời theo cảm nhận, kể cả khi bạn không chắc."),lik(ITEMS.xPCDL)]}
+  );
+  if(study===3)P.push(
+   {id:"src",label:"SRC · hiểu nguồn dữ liệu",blocks:[single("SRC","Theo những gì bạn thấy trên màn hình app, gợi ý của Chuỗi A dựa trên thông tin nào?",[[1,"Chỉ các sản phẩm tôi đã xem trong app"],[2,"Cả lịch sử mua của tôi tại cửa hàng"],[3,"Màn hình không nói gì về việc này"],[4,"Tôi không nhớ"]])],
     onNext:s=>{s.emb.SRC_OK=((s.emb.BLOCK===1&&s.ans.SRC===1)||(s.emb.BLOCK!==1&&s.ans.SRC===3))?1:0;return null}},
-   {id:"bel",show:s=>s.emb.BLOCK===1,blocks:[html(()=>`<p class="intro">Màn hình app có dòng: "${BLOCK_LINE}" Bạn đồng ý với các câu sau ở mức nào?</p>`),lik(ITEMS.xBEL)]});
-  P.push(
-   {id:"chk",blocks:[single("CHK_REC","Theo tình huống bạn đã đọc, bạn thích loại đồ ăn sáng nào?",[[1,"Sữa thực vật không đường, yến mạch nguyên chất, đồ ăn sáng ít đường"],[2,"Sữa tươi, ngũ cốc ăn sáng, bánh mì sandwich"],[3,"Xôi, bánh mì thịt, cà phê sữa"],[4,"Tôi không nhớ"]])],
+   {id:"bel",label:"BEL · mức tin (chỉ BLOCK = 1)",show:s=>s.emb.BLOCK===1,blocks:[html(()=>`<p class="intro">Màn hình app có dòng: "${BLOCK_LINE}" Bạn đồng ý với các câu sau ở mức nào?</p>`),lik(ITEMS.xBEL)]}
+  );
+  if(study===2)P.push(
+   {id:"imc",label:"Câu chú ý (IMC)",blocks:[html(()=>`<p class="intro">Đây là câu hỏi kiểm tra xem bạn có đọc hướng dẫn hay không. Vui lòng chọn "Khác" và nhập đúng cụm từ "đã đọc" vào ô bên cạnh.</p>`),
+     single("IMCQ","Bạn thường đọc tin tức ở đâu nhất?",[[1,"Facebook"],[2,"YouTube"],[3,"TikTok"],[4,"Báo điện tử"],[5,"Zalo"],[6,"Khác (ghi rõ)"]],{other:6,otherOptional:true})],
+    onNext:s=>{const ok=s.ans.IMCQ===6&&norm(s.ans.IMCQ_TEXT).includes("da doc");s.emb.IMC=ok?1:0;return ok?null:{out:"IMC: trượt câu kiểm tra chú ý"}}}
+  );
+  if(study===3)P.push(
+   {id:"chk",label:"CHK_REC · nhớ lại hồ sơ",blocks:[single("CHK_REC","Theo tình huống bạn đã đọc, bạn thích loại đồ ăn sáng nào?",[[1,"Sữa thực vật không đường, yến mạch nguyên chất, đồ ăn sáng ít đường"],[2,"Sữa tươi, ngũ cốc ăn sáng, bánh mì sandwich"],[3,"Xôi, bánh mì thịt, cà phê sữa"],[4,"Tôi không nhớ"]])],
     onNext:s=>{s.emb.CHK_REC_OK=((s.emb.PROFILE??0)===0?s.ans.CHK_REC===1:s.ans.CHK_REC===2)?1:0;return null}},
-   {id:"iuipc",blocks:[intro("Các câu sau hỏi quan điểm chung của bạn về việc doanh nghiệp thu thập thông tin cá nhân, không riêng Chuỗi A."),lik(ITEMS.IUIPC.slice(6))]},
-   {id:"probe",blocks:[{type:"text",c:"PROBE",t:"Theo bạn, nghiên cứu này muốn tìm hiểu điều gì? (không bắt buộc)",min:0,req:false}]},
-   {id:"demo",blocks:[...DEMO]},
-   {id:"debrief",blocks:[html(()=>debrief()),single("WITHDRAW","Sau khi đọc phần giải thích, bạn có đồng ý để chúng tôi dùng câu trả lời của bạn không?",[[1,"Đồng ý"],[0,"Không, hãy xóa câu trả lời của tôi (bạn vẫn nhận đủ thù lao)"]])]});
+   {id:"iuipc",label:"IUIPC7–10",blocks:[intro("Các câu sau hỏi quan điểm chung của bạn về việc doanh nghiệp thu thập thông tin cá nhân, không riêng Chuỗi A."),lik(ITEMS.IUIPC.slice(6))]},
+   {id:"probe",label:"PROBE",blocks:[{type:"text",c:"PROBE",t:"Theo bạn, nghiên cứu này muốn tìm hiểu điều gì? (không bắt buộc)",min:0,req:false}]}
+  );
+  P.push(
+   {id:"demo",label:"Phần 5 · Nhân khẩu học & biến kiểm soát",blocks:[html(()=>`<p class="intro">Các câu hỏi sau giúp mô tả mẫu nghiên cứu và kiểm soát một số khác biệt cá nhân. Bạn có thể chọn "Không muốn trả lời" ở các câu có lựa chọn này.</p>`),...DEMO]},
+   {id:"debrief",label:"Giải thích cuối khảo sát",blocks:[html(()=>debrief(study)),single("WITHDRAW","Sau khi đọc phần giải thích, bạn có đồng ý để chúng tôi sử dụng câu trả lời của mình cho nghiên cứu không?",[[1,"Có, tôi đồng ý"],[0,"Không, tôi không đồng ý cho sử dụng câu trả lời của mình"]])],onNext:s=>{if(s.ans.WITHDRAW===0){s.ans={WITHDRAW:0};s.emb={};}return null;}}
+  );
   return P;
 }
+function debrief(study){
+  const p3=study===3?`<p>Ở một số phiên bản, màn hình app có dòng nói rằng gợi ý chỉ dựa trên các sản phẩm bạn đã xem trong app và Chuỗi A không dùng lịch sử mua tại cửa hàng. Dòng này cũng do nhóm nghiên cứu viết. Nó không cho biết các chuỗi bán lẻ thật dùng dữ liệu của bạn ra sao. Muốn biết một chuỗi cụ thể dùng dữ liệu thế nào, bạn có thể xem chính sách quyền riêng tư của chuỗi đó.</p>`:"";
+  const groups=study===2?"app và cửa hàng của Chuỗi A liên thông nhiều hay ít, và gợi ý theo sở thích riêng hay gợi ý chung. Nghiên cứu muốn biết hai yếu tố này ảnh hưởng thế nào đến cảm nhận của khách về lợi ích của gợi ý, cảm giác khó chịu và ý định gắn bó, cũng như suy đoán của khách về cách nhà bán lẻ dùng dữ liệu."
+    :"app và cửa hàng của Chuỗi A liên thông nhiều hay ít, và màn hình app có hay không có dòng nói về nguồn dữ liệu. Nghiên cứu muốn biết khi app và cửa hàng liên thông, khách có tự suy ra rằng dữ liệu mua sắm đang được ghép lại hay không, và suy luận đó ảnh hưởng thế nào đến cảm nhận về gợi ý.";
+  return fmt(S,`<div class="prose"><h2 class="pt">Cảm ơn bạn! Xin giải thích thêm về nghiên cứu này.</h2>
+<p style="margin-top:10px">Chuỗi A là chuỗi giả định. Mô tả dịch vụ và màn hình app được tạo riêng cho nghiên cứu, không mô tả bất kỳ chuỗi bán lẻ thật nào.</p>${p3}
+<p>Người tham gia được chia ngẫu nhiên để xem các phiên bản khác nhau: ${groups} Chúng tôi chưa nói rõ điều này từ đầu vì biết trước có thể làm thay đổi cách bạn trả lời.</p>
+<p>Xin đừng kể nội dung tình huống cho người có thể tham gia sau. Nếu có thắc mắc, liên hệ Lê Phước Bằng (lephuocbang.st@tdtu.edu.vn).</p></div>`);
+}
+const STUDIES={
+ 2:{title:"Study 2 · Thí nghiệm",pages:expPages(2)}
+};
 
-/* ================= columns (same header in every file of a study) ================= */
-function columns(){
-  const meta=["trial_type","STUDY","MODE","RID","PID","STATUS","SCREENOUT_REASON","START_TIME","END_TIME","TOTAL_SEC","SCREEN_W","TEST"];
-  const it=a=>a.map(x=>x.c);
-  let cols;
-  if(STUDY===1){
-    cols=["CONSENT","SC1",...CHAINS.map(c=>"SC2_"+c.v),"SC2_0",...CHAINS.map(c=>"CH_"+c.v),"SC4","RETAILER","CATEGORY","RET_SWITCH",...PCH.map(([v])=>"PCH_"+v),"PCH_0","SC6","SC7",
-      ...it(ITEMS.RS),...it(ITEMS.PCI),"REC1","REC2",...it(ITEMS.PAP),...it(ITEMS.PPV),...it(ITEMS.LOY),...it(ITEMS.ATCB),"FIL1","FIL2",...it(ITEMS.CRP),...(MODE==="pilot"?it(ITEMS.PI):[]),
-      ...it(ITEMS.IUIPC),"IRI2",...it(ITEMS.PPR),...[1,2,3,4,5,6].flatMap(k=>["PPR_R"+k,"PPR_R"+k+"_TEXT"]),...it(ITEMS.PCDL),...it(ITEMS.TAI),...it(ITEMS.AL),...it(ITEMS.PSE),"D1","D2","D3","D4","D5","SERIOUS","D6"];
-    if(MODE==="pilot")cols.push(...PAGES.filter(p=>p.blocks.some&&p.blocks.some(b=>b.c&&String(b.c).startsWith("CMT_"))).map(p=>"CMT_"+p.id));
-  }else{
-    cols=["CONSENT","SC1","SC2","SC3","IMCQ","IMCQ_TEXT","IMC","PRE1","PRE2","CONDITION","COND_SOURCE","COND_ERROR","GROUP","CELL","INTEG",STUDY===2?"PERS":"BLOCK","PROFILE","ORDER",
-      ...it(ITEMS.xPPV),...it(ITEMS.xCRP),...(STUDY===3?it(ITEMS.xAMB):[]),...it(ITEMS.xLOY),"ATT1","ATT2","ATT3",...it(ITEMS.REAL),...it(ITEMS.xMC),...it(ITEMS.xPCDL),
-      ...(STUDY===3?["SRC","SRC_OK",...it(ITEMS.xBEL)]:[]),"CHK_REC","CHK_REC_OK",...it(ITEMS.IUIPC.slice(6)),"PROBE","D1","D2","D3","D4","D5","SERIOUS","WITHDRAW"];
-  }
-  const ids=PAGES.map(p=>({out1:"ppv",out2:"crp",out3:"amb"}[p.id]||p.id));
-  const ORD=new Set(["sc2","rs","pci","pap","ppv","loy","filler","crp","pi","iuipc","pcdl","tai","al","pse","amb","mc","bel"]);
-  const tcols=ids.map(id=>"T_"+id), ocols=ids.filter(id=>ORD.has(id)).map(id=>"ORD_"+id);
-  return meta.concat(cols,tcols,ocols);
-}
-function csvCell(v){if(v===undefined||v===null)return "";const s=String(v);return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
-function toCSV(rec){
-  const cols=columns();
-  Object.keys(rec).forEach(k=>{if(!cols.includes(k))cols.push(k)});
-  return cols.map(csvCell).join(",")+"\n"+cols.map(k=>csvCell(rec[k])).join(",")+"\n";
-}
-function record(status,reason,minimal){
-  const now=new Date();
-  const r={trial_type:"survey_response",STUDY,MODE,RID,PID,STATUS:status,SCREENOUT_REASON:reason||"",START_TIME:new Date(S.t0).toISOString(),END_TIME:now.toISOString(),
-    TOTAL_SEC:Math.round((now-S.t0)/1000),SCREEN_W:window.innerWidth,TEST:TEST?1:0};
-  if(minimal==="none")return r;
-  if(minimal==="cell"){["CONDITION","COND_SOURCE","GROUP","CELL","INTEG","PERS","BLOCK","PROFILE","ORDER"].forEach(k=>{if(S.emb[k]!==undefined)r[k]=S.emb[k]});return r}
-  Object.assign(r,S.emb,S.ans);
-  Object.keys(S.order).forEach(k=>{r["ORD_"+k]=S.order[k]});
-  return r;
+/* ================= state ================= */
+let S=null,view="survey",timerId=null,showData=false;
+function newState(study,keep){
+  return {study,ans:{},emb:{},idx:0,order:{},t0:Date.now(),pageT:Date.now(),status:null,
+    cond:keep?keep.cond:{INTEG:"r",PERS:"r",BLOCK:"r",PROFILE:"r",ORDER:"r"},
+    flags:keep?keep.flags:{noTimer:false,allowSkip:false,shuffle:true}};
 }
 
-/* ================= sending ================= */
-async function send(rec){
-  const csv=toCSV(rec);
-  S.lastCSV=csv;
-  if(TEST)return {ok:true,test:true};
-  if(!DP_ID)return {ok:false,err:"NO_EXPERIMENT_ID"};
-  const filename=`S${DP_KEY}_${rec.STATUS}_${RID}.csv`;
-  let last="NETWORK";
-  for(let a=0;a<4;a++){
-    try{
-      const r=await fetch(API+"data/",{method:"POST",headers:{"Content-Type":"application/json",Accept:"*/*"},body:JSON.stringify({experimentID:DP_ID,filename,data:csv})});
-      if(r.status===201||r.status===202||r.ok)return {ok:true};
-      const j=await r.json().catch(()=>({}));
-      if(j.error==="FILE_EXISTS")return {ok:true};
-      last=j.error||("HTTP_"+r.status);
-      if(r.status===400)break;
-    }catch(e){last="NETWORK"}
-    await sleep(1200*(a+1));
-  }
-  return {ok:false,err:last};
-}
-
-/* ================= state & rendering ================= */
-const PAGES=STUDY===1?S1:(STUDY===2||STUDY===3)?expPages():[];
-let S={ans:{},emb:{},idx:0,order:{},t0:Date.now(),pageT:Date.now(),busy:false,finished:false},timerId=null;
+/* ================= renderers ================= */
 function blocksOf(p){return (typeof p.blocks==="function"?p.blocks(S):p.blocks).filter(b=>!b.show||b.show(S))}
-function rq(b,inner){return `<fieldset class="q" data-q="${esc(b.c||"")}"><legend>${fmt(S,b.t)}${b.c?code(b.c):""}</legend>${inner}<div class="emsg">Vui lòng trả lời câu này.</div></fieldset>`}
-function pageKey(p){return p.tid?p.tid(S):p.id}
-function renderBlock(b,p){
+function rq(b,inner,cls=""){return `<fieldset class="q ${cls}" data-q="${esc(b.c||"")}"><legend>${fmt(S,b.t)}${b.c?code(b.c):""}</legend>${inner}<div class="emsg">Vui lòng trả lời câu này.</div></fieldset>`}
+function renderBlock(b,key){
   const A=S.ans;
   switch(b.type){
-  case "html":return typeof b.h==="function"?b.h(S):b.h;
+  case "html": return typeof b.h==="function"?b.h(S):b.h;
   case "lik":{
-    const lab=b.scale==="FREQ"?FREQ:LIK,n=lab.length;let items=b.items;
-    if(b.shuffle!==false){const k=pageKey(p);if(!S.order[k])S.order[k]=shuffle(items.length).map(i=>items[i].c).join("|");const ord=S.order[k].split("|");items=ord.map(c=>b.items.find(x=>x.c===c)).filter(Boolean)}
+    const lab=b.scale==="FREQ"?FREQ:LIK,n=lab.length;
+    let items=b.items;
+    if(S.flags.shuffle&&b.shuffle!==false){if(!S.order[key]||S.order[key].length!==items.length)S.order[key]=shuffle(items.length);items=S.order[key].map(i=>b.items[i])}
     return items.map(it=>`<fieldset class="q" data-q="${it.c}"><legend>${fmt(S,it.t)}${code(it.c)}</legend><div class="scale n${n}" role="radiogroup">`+
       lab.map((l,i)=>`<label class="opt" for="${it.c}_${i+1}"><input type="radio" id="${it.c}_${i+1}" name="${it.c}" value="${i+1}"${A[it.c]===i+1?" checked":""}><span class="dot"></span><span class="lab">${l}</span><span class="num">${i+1}</span></label>`).join("")+
       `</div><div class="emsg">Vui lòng chọn một mức.</div></fieldset>`).join("");}
   case "single":{
     const opts=typeof b.opts==="function"?b.opts(S):b.opts;
     return rq(b,`<div class="list">`+opts.map(([v,l])=>{const id=`${b.c}_${v}`;const oth=b.other===v;
-      return `<label class="li" for="${id}"><input type="radio" id="${id}" name="${b.c}" value="${v}"${A[b.c]===v?" checked":""}><span>${fmt(S,l)}</span>${oth?`<input type="text" class="othr" id="${b.c}_TEXT" name="${b.c}_TEXT" aria-label="Ghi rõ" maxlength="300" value="${esc(A[b.c+"_TEXT"]||"")}">`:""}</label>`}).join("")+`</div>`);}
+      return `<label class="li" for="${id}"><input type="radio" id="${id}" name="${b.c}" value="${v}"${A[b.c]===v?" checked":""}><span>${fmt(S,l)}</span>${oth?`<input type="text" class="othr" id="${b.c}_TEXT" name="${b.c}_TEXT" aria-label="Ghi rõ" value="${esc(A[b.c+"_TEXT"]||"")}">`:""}</label>`}).join("")+`</div>`);}
   case "multi":{
     let opts=b.opts.slice();
-    if(b.shuffle){const k=pageKey(p);if(!S.order[k])S.order[k]=shuffle(opts.length).map(i=>opts[i][0]).join("|");const ord=S.order[k].split("|").map(Number);opts=ord.map(v=>b.opts.find(o=>o[0]===v)).filter(Boolean)}
+    if(b.shuffle&&S.flags.shuffle){if(!S.order[key])S.order[key]=shuffle(opts.length);opts=S.order[key].map(i=>b.opts[i])}
     const all=opts.concat(b.excl?[b.excl]:[]);
     return rq(b,`<div class="list">`+all.map(([v,l])=>{const id=`${b.c}_${v}`;return `<label class="li" for="${id}"><input type="checkbox" id="${id}" name="${id}" data-multi="${b.c}" data-excl="${b.excl&&b.excl[0]===v?1:0}"${A[id]===1?" checked":""}><span>${fmt(S,l)}</span></label>`}).join("")+`</div>`);}
-  case "number":return rq(b,`<input class="num-in" type="number" inputmode="numeric" id="${b.c}" name="${b.c}" min="${b.min}" max="${b.max}" value="${A[b.c]??""}">`);
-  case "text":return rq(b,`<textarea class="txt" id="${b.c}" name="${b.c}" maxlength="2000">${esc(A[b.c]||"")}</textarea>`);
-  case "grid":{const rows=b.rows(S);
+  case "number": return rq(b,`<input class="num-in" type="number" inputmode="numeric" id="${b.c}" name="${b.c}" min="${b.min}" max="${b.max}" value="${A[b.c]??""}">`);
+  case "text": return rq(b,`<textarea class="txt" id="${b.c}" name="${b.c}">${esc(A[b.c]||"")}</textarea>`);
+  case "grid":{
+    const rows=b.rows(S);
     return rq(b,`<div class="gridq"><table><thead><tr><th></th>${b.cols.map(([,l])=>`<th scope="col">${l}</th>`).join("")}</tr></thead><tbody>`+
       rows.map(([k,l])=>`<tr><th scope="row" style="font-weight:500">${l}${code(b.c+"_"+k)}</th>${b.cols.map(([v,cl])=>`<td><input type="radio" id="${b.c}_${k}_${v}" name="${b.c}_${k}" value="${v}" aria-label="${esc(cl)}"${A[b.c+"_"+k]===v?" checked":""}></td>`).join("")}</tr>`).join("")+`</tbody></table></div>`);}
-  case "sd":return `<fieldset class="q" data-q="ATT"><legend>${fmt(S,b.t)}${code("ATT1–ATT3")}</legend><div style="display:grid;gap:14px">`+b.items.map(it=>
-      `<div class="sd"><span class="l">${it.l}</span><span class="pts" role="radiogroup" aria-label="${esc(it.l+" – "+it.r)}">`+[1,2,3,4,5,6,7].map(v=>`<label class="pt" for="${it.c}_${v}"><input type="radio" id="${it.c}_${v}" name="${it.c}" value="${v}"${A[it.c]===v?" checked":""}>${v}</label>`).join("")+`</span><span class="r">${it.r}</span></div>`).join("")+`</div><div class="emsg">Vui lòng chọn một điểm cho mỗi dòng.</div></fieldset>`;
+  case "sd":
+    return `<fieldset class="q" data-q="ATT"><legend>${fmt(S,b.t)}${code("ATT1–ATT3")}</legend><div style="display:grid;gap:14px">`+b.items.map(it=>
+      `<div class="sd" data-q="${it.c}"><span class="l">${it.l}</span><span class="pts" role="radiogroup" aria-label="${esc(it.l+" – "+it.r)}">`+
+      [1,2,3,4,5,6,7].map(v=>`<label class="pt" for="${it.c}_${v}"><input type="radio" id="${it.c}_${v}" name="${it.c}" value="${v}"${A[it.c]===v?" checked":""}>${v}</label>`).join("")+`</span><span class="r">${it.r}</span></div>`).join("")+`</div><div class="emsg">Vui lòng chọn một điểm cho mỗi dòng.</div></fieldset>`;
   }
   return "";
 }
-function shell(body,foot,pct){
-  $("#main").innerHTML=`<div class="sheet"><div class="sh-top"><div class="org">${cfgv("ORG")} · Khảo sát nghiên cứu</div><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div></div><div class="sh-body">${body}</div>${foot||""}</div>`;
-  refit($("#main"));
-}
-function render(){
+function pagesOf(){return STUDIES[S.study].pages}
+function renderSurvey(){
   clearInterval(timerId);
-  const p=PAGES[S.idx];
-  const pct=Math.round(S.idx/PAGES.length*100);
-  const body=(TEST?`<div class="rnote">Trang ${S.idx+1}/${PAGES.length} · ${esc(pageKey(p))}</div>`:"")+blocksOf(p).map(b=>renderBlock(b,p)).join("");
-  shell(body,`<div class="sh-foot"><span class="note" id="tnote"></span><button type="button" class="next" id="btnNext">Tiếp</button></div>`,pct);
-  if(p.min){const end=S.pageT+p.min*1000,btn=$("#btnNext"),note=$("#tnote");
-    const tick=()=>{const left=Math.ceil((end-Date.now())/1000);if(left>0){btn.disabled=true;note.textContent=`Nút Tiếp sẽ hiện sau ${left} giây.`}else{btn.disabled=false;note.textContent="";clearInterval(timerId)}};
-    tick();timerId=setInterval(tick,250)}
+  const main=$("#main"),pages=pagesOf();
+  let body,foot;
+  const pct=S.status?100:Math.round(S.idx/(pages.length)*100);
+  if(S.status){body=renderStatus();foot="";}
+  else{
+    const p=pages[S.idx];const bl=blocksOf(p);
+    const dyn=p.dyn?` <span class="code">${p.dyn(S)}</span>`:"";
+    const hidden=p.show&&!p.show(S)?`<p class="rnote" style="display:block">Trang này bị ẩn với điều kiện hiện tại; bạn đang xem vì đã chọn "Đi tới".</p>`:"";
+    body=hidden+`<div class="rnote">${esc(p.label)}${dyn}</div>`+bl.map((b,i)=>renderBlock(b,p.id+"_"+i)).join("");
+    foot=`<div class="sh-foot"><span class="note" id="tnote"></span><button type="button" class="next" id="btnNext">Tiếp</button></div>`;
+  }
+  main.innerHTML=`<div class="sheet"><div class="sh-top"><div class="org"><span>Trường Đại học Tôn Đức Thắng · Khảo sát nghiên cứu</span><span>${STUDIES[S.study].title}</span></div><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div></div><div class="sh-body">${body}</div>${foot}</div>`+(showData?dataPanel():"");
+  refit(main);
+  if(!S.status){const p=pages[S.idx];startTimer(p)}
+  updateChips();
 }
+function startTimer(p){
+  const btn=$("#btnNext"),note=$("#tnote");if(!btn)return;
+  if(!p.min||S.flags.noTimer){btn.disabled=false;note.textContent="";return}
+  const end=S.pageT+p.min*1000;
+  const tick=()=>{const left=Math.ceil((end-Date.now())/1000);if(left>0){btn.disabled=true;note.textContent=`Nút Tiếp sẽ hiện sau ${left} giây.`}else{btn.disabled=false;note.textContent="";clearInterval(timerId)}};
+  tick();timerId=setInterval(tick,250);
+}
+function renderStatus(){
+  const st = S.status;
+  if (st.kind === "assignment_error") {
+    return `<div class="statusbox"><h2 class="pt">Chưa thể phân nhóm thí nghiệm</h2><p class="lead">Kết nối với hệ thống phân nhóm đang gặp lỗi, nên khảo sát chưa thể tiếp tục. Vui lòng kiểm tra kết nối rồi thử lại.</p><p>Thắc mắc xin liên hệ Lê Phước Bằng: lephuocbang.st@tdtu.edu.vn.</p><p class="rnote" style="display:block">Mã lỗi kỹ thuật: ${esc(S.assignmentError || "unknown")}</p><div><button type="button" class="btn2" id="btnRetryAssignment">Thử phân nhóm lại</button></div></div>`;
+  }
+  if (st.kind === "end") {
+    if (S.ans.WITHDRAW === 0) {
+      return `<div class="statusbox"><h2 class="pt">Cảm ơn bạn.</h2><p class="lead">Bạn không đồng ý cho sử dụng câu trả lời của mình, vì vậy câu trả lời không được gửi vào hệ thống dữ liệu nghiên cứu.</p><p>Thắc mắc xin liên hệ Lê Phước Bằng: lephuocbang.st@tdtu.edu.vn.</p></div>`;
+    }
+    if (S.uploadState === "saved") {
+      return `<div class="statusbox"><h2 class="pt">Cảm ơn bạn đã hoàn thành khảo sát!</h2><p class="lead">Câu trả lời của bạn đã được gửi đến hệ thống lưu trữ nghiên cứu.</p><p>Thắc mắc xin liên hệ Lê Phước Bằng: lephuocbang.st@tdtu.edu.vn.</p></div>`;
+    }
+    if (S.uploadState === "error") {
+      return `<div class="statusbox"><h2 class="pt">Chưa xác nhận được việc gửi câu trả lời</h2><p class="lead">Kết nối lưu dữ liệu đang gặp lỗi. Vui lòng bấm thử gửi lại một lần. Nếu lỗi tiếp tục, liên hệ Lê Phước Bằng: lephuocbang.st@tdtu.edu.vn.</p><p class="rnote" style="display:block">Mã lỗi kỹ thuật: ${esc(S.uploadError || "unknown")}</p><div><button type="button" class="btn2" id="btnRetryUpload">Thử gửi lại</button></div></div>`;
+    }
+    return `<div class="statusbox"><h2 class="pt">Đang lưu câu trả lời của bạn…</h2><p class="lead">Vui lòng chờ trong giây lát và đừng đóng trang này.</p></div>`;
+  }
+  if (st.kind === "declined") {
+    return `<div class="statusbox"><h2 class="pt">Cảm ơn bạn.</h2><p class="lead">Bạn đã chọn không tham gia khảo sát.</p></div>`;
+  }
+  return `<div class="statusbox"><h2 class="pt">Cảm ơn bạn đã dành thời gian!</h2><p class="lead">Khảo sát này dành cho một nhóm khách hàng khác.</p></div>`;
+}
+function dataRows(){
+  const r=[];const e=Object.assign({},S.emb);e.TOTAL_SEC=Math.round((Date.now()-S.t0)/1000);
+  Object.keys(e).forEach(k=>r.push([k,e[k],1]));
+  Object.keys(S.ans).forEach(k=>{if(S.ans[k]!==undefined&&S.ans[k]!=="")r.push([k,S.ans[k],0])});
+  return r;
+}
+function dataTable(){const r=dataRows();return `<div class="datascroll"><table class="datatbl"><tbody>${r.length?r.map(([k,v,e])=>`<tr><td>${esc(k)}${e?" · nhúng":""}</td><td>${esc(v)}</td></tr>`).join(""):`<tr><td colspan="2">Chưa có câu trả lời nào.</td></tr>`}</tbody></table></div>`}
+function dataPanel(){return `<section class="datawrap" aria-label="Dữ liệu ghi được"><h3>Dữ liệu ghi được của phiếu này</h3>${dataTable()}</section>`}
+
+/* ================= validation & navigation ================= */
 function answered(c){return S.ans[c]!==undefined&&S.ans[c]!==null&&S.ans[c]!==""}
 function validate(p){
+  if(S.flags.allowSkip)return true;
   const bad=[];
   blocksOf(p).forEach(b=>{
-    if(b.type==="lik")b.items.forEach(it=>{if(!answered(it.c))bad.push(it.c)});
+    if(b.type==="lik"){b.items.forEach(it=>{if(!answered(it.c))bad.push(it.c)})}
     else if(b.type==="single"){if(!answered(b.c))bad.push(b.c);else if(b.other===S.ans[b.c]&&!b.otherOptional&&!String(S.ans[b.c+"_TEXT"]||"").trim())bad.push(b.c)}
     else if(b.type==="multi"){const vs=b.opts.map(o=>o[0]).concat(b.excl?[b.excl[0]]:[]);if(!vs.some(v=>S.ans[b.c+"_"+v]===1))bad.push(b.c)}
     else if(b.type==="number"){const v=S.ans[b.c];if(!(typeof v==="number"&&v>=b.min&&v<=b.max))bad.push(b.c)}
@@ -569,92 +709,256 @@ function validate(p){
   document.querySelectorAll(".q.err").forEach(f=>f.classList.remove("err"));
   if(!bad.length)return true;
   let first=null;
-  bad.forEach(c=>{const f=document.querySelector(`fieldset.q[data-q="${CSS.escape(c)}"]`);if(f){f.classList.add("err");if(!first)first=f;
-    if(c==="REC2")f.querySelector(".emsg").textContent="Vui lòng mô tả ít nhất 10 ký tự.";
-    if(c==="SC1")f.querySelector(".emsg").textContent="Vui lòng nhập tuổi (số từ 10 đến 99).";}});
+  bad.forEach(c=>{const f=document.querySelector(`fieldset.q[data-q="${CSS.escape(c)}"]`);if(f){f.classList.add("err");if(!first)first=f}
+    if(c==="REC2"&&f)f.querySelector(".emsg").textContent="Vui lòng mô tả ít nhất 10 ký tự.";
+    if(c==="SC1"&&f)f.querySelector(".emsg").textContent="Vui lòng nhập tuổi (số từ 10 đến 99).";});
   if(first)first.scrollIntoView({behavior:"smooth",block:"center"});
   return false;
 }
-async function next(){
-  if(S.busy)return;
-  const p=PAGES[S.idx];
-  if(p.min&&Date.now()<S.pageT+p.min*1000)return;
-  if(!validate(p))return;
-  S.busy=true;const btn=$("#btnNext");if(btn){btn.disabled=true}
-  S.emb["T_"+pageKey(p)]=Math.round((Date.now()-S.pageT)/1000);
-  let r=null;try{r=p.onNext?await p.onNext(S):null}catch(e){r=null}
-  S.busy=false;
-  if(r&&r.declined)return finish("declined","CONSENT_NO","none");
-  if(r&&r.out)return finish("screenout",r.out,"screen");
-  if(r&&r.quota)return finish("quotafull","QUOTA_FULL","screen");
-  let i=S.idx+1;while(i<PAGES.length&&PAGES[i].show&&!PAGES[i].show(S))i++;
-  if(i>=PAGES.length){
-    if(STUDY!==1&&S.ans.WITHDRAW===0)return finish("withdrawn","","cell");
-    return finish("complete","","full");
+/* ================= DataPipe submission (Study 2) ================= */
+function study2ParticipantId(){
+  try {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID().replace(/-/g, "");
+    }
+  } catch (_) {}
+  return Date.now().toString(36) + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+}
+function csvEscape(value){
+  if (value === undefined || value === null) return "";
+  const text = (typeof value === "object") ? JSON.stringify(value) : String(value);
+  return '"' + text.replace(/"/g, '""') + '"';
+}
+function createStudy2Csv(){
+  const participantId = S.submissionId || (S.submissionId = study2ParticipantId());
+  const submittedAt = S.submittedAt || (S.submittedAt = new Date().toISOString());
+  const totalSec = Math.round((Date.now() - S.t0) / 1000);
+  const record = {
+    trial_type: "study2_completed",
+    study: "Study 2",
+    participant_id: participantId,
+    submitted_at: submittedAt,
+    duration_seconds: totalSec,
+    INTEG: S.emb.INTEG,
+    PERS: S.emb.PERS,
+    PROFILE: S.emb.PROFILE,
+    CONDITION_INDEX: S.emb.CONDITION_INDEX,
+    ORDER: S.emb.ORDER,
+    GROUP: S.emb.GROUP,
+    CELL: S.emb.CELL,
+    T_K1: S.emb.T_K1,
+    T_K2: S.emb.T_K2,
+    T_K3: S.emb.T_K3,
+    IMC: S.emb.IMC
+  };
+  // Stable column order across participants, even when optional responses are blank.
+  const answerColumns = [
+    "CONSENT", "AGE", "SC2",
+    "CRP1", "CRP2", "CRP3", "CRP4", "CRP5",
+    "PPV1", "PPV2", "PPV3", "PPV4", "PPV5",
+    "LOY1", "LOY2", "LOY3", "LOY4", "LOY5",
+    "ATT1", "ATT2", "ATT3", "REAL1", "REAL2",
+    "PAP1", "PAP3", "PAP4",
+    "MC_PCI1", "MC_PCI2", "MC_PCI3", "MC_PCI4",
+    "PCDL1", "PCDL2", "PCDL3", "PCDL4",
+    "IMCQ", "IMCQ_TEXT",
+    "GEN", "EDU", "OCCUPATION", "INC", "FREQ_APP", "TECH_FAM", "PREV_VIOL",
+    "WITHDRAW"
+  ];
+  // Include any future/unexpected answer key rather than silently dropping it.
+  const extras = Object.keys(S.ans).filter(k => !answerColumns.includes(k)).sort();
+  const headers = Object.keys(record).concat(answerColumns, extras);
+  const values = headers.map(k => {
+    if (Object.prototype.hasOwnProperty.call(S.ans, k)) return S.ans[k];
+    return record[k];
+  });
+  S.submissionFilename = S.submissionFilename || `study2_${participantId}.csv`;
+  S.submissionCsv = headers.map(csvEscape).join(",") + "\r\n" + values.map(csvEscape).join(",") + "\r\n";
+  return { filename: S.submissionFilename, data: S.submissionCsv };
+}
+async function submitCompletedStudy2(){
+  if (!S || !S.status || S.status.kind !== "end" || S.ans.WITHDRAW === 0) return;
+  if (S.uploadState === "sending" || S.uploadState === "saved") return;
+  S.uploadState = "sending";
+  renderSurvey();
+  try {
+    const config = window.STUDY_CONFIG;
+    if (!config || !config.experimentID || !config.dataEndpoint) {
+      throw new Error("Missing DataPipe settings in config.js");
+    }
+    const csv = createStudy2Csv();
+    const response = await fetch(config.dataEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        experimentID: config.experimentID,
+        filename: csv.filename,
+        data: csv.data
+      })
+    });
+    let body = {};
+    try { body = await response.json(); } catch (_) {}
+    // HTTP 201 = stored; 202 = accepted and queued. FILE_EXISTS on a retry
+    // with this same randomly unique filename means the first submission arrived.
+    if (response.status === 201 || response.status === 202 || body.error === "FILE_EXISTS") {
+      S.uploadState = "saved";
+      S.uploadMessage = response.status === 202 ? "queued" : "stored";
+    } else {
+      const code = body.error || `HTTP_${response.status}`;
+      throw new Error(code);
+    }
+  } catch (error) {
+    console.error("Study 2 DataPipe upload failed:", error);
+    S.uploadState = "error";
+    S.uploadError = String(error && error.message ? error.message : error);
   }
-  S.idx=i;S.pageT=Date.now();render();window.scrollTo(0,0);
+  renderSurvey();
 }
-async function finish(status,reason,level){
-  S.finished=true;clearInterval(timerId);
-  shell(`<div class="statusbox"><div class="spinner" aria-hidden="true"></div><p class="lead">Đang gửi câu trả lời của bạn, vui lòng không đóng trang…</p></div>`,"",100);
-  let rec;
-  if(level==="full")rec=record(status,reason);
-  else if(level==="screen"){rec=record(status,reason,"none");["CONSENT","SC1","SC2","SC3","IMC","IMCQ"].forEach(k=>{if(S.ans[k]!==undefined)rec[k]=S.ans[k];if(S.emb[k]!==undefined)rec[k]=S.emb[k]});
-    CHAINS.forEach(c=>{["SC2_","CH_"].forEach(p=>{if(S.ans[p+c.v]!==undefined)rec[p+c.v]=S.ans[p+c.v]})})}
-  else rec=record(status,reason,level);
-  const res=await send(rec);
-  if(!res.ok)return failScreen(status,reason,level,res.err);
-  if(!TEST){try{localStorage.setItem(DONE_KEY,status)}catch(e){}}
-  done(status);
+
+async function next(){
+  if (S.busy) return;
+  const pages=pagesOf(),p=pages[S.idx];
+  if(p.min&&!S.flags.noTimer&&Date.now()<S.pageT+p.min*1000)return;
+  if(!validate(p))return;
+  if(p.tcode)S.emb[p.tcode]=Math.round((Date.now()-S.pageT)/1000);
+  S.busy = true;
+  const nextButton = $("#btnNext");
+  if (nextButton) { nextButton.disabled = true; nextButton.textContent = "Đang xử lý…"; }
+  let r = null;
+  try {
+    r = p.onNext ? await p.onNext(S) : null;
+  } catch (error) {
+    console.error("Study 2 condition assignment failed:", error);
+    S.busy = false;
+    S.status = { kind: "assignment_error" };
+    S.assignmentError = String(error && error.message ? error.message : error);
+    return go();
+  }
+  S.busy = false;
+  if(r&&r.declined){S.status={kind:"declined"};return go()}
+  if(r&&r.out){S.status={kind:"screenout",msg:r.out};return go()}
+  let i=S.idx+1;while(i<pages.length&&pages[i].show&&!pages[i].show(S))i++;
+  if(i>=pages.length){
+    S.status={kind:"end"};
+    S.uploadState = S.ans.WITHDRAW === 0 ? "not-consented" : "ready";
+  }else S.idx=i;
+  go();
+  // Only upload completed surveys after the participant confirms consent at debrief.
+  if(S.status && S.status.kind === "end" && S.ans.WITHDRAW !== 0) submitCompletedStudy2();
 }
-function failScreen(status,reason,level,err){
-  shell(`<div class="statusbox"><h2 class="pt">Chưa gửi được câu trả lời</h2><p class="lead">Kết nối mạng có thể đang chập chờn. Câu trả lời của bạn vẫn còn trên trang này. Vui lòng kiểm tra mạng rồi bấm "Gửi lại".</p><button type="button" class="btn2" id="btnRetry">Gửi lại</button><p class="rnote" style="display:block">Mã lỗi: ${esc(err)}</p></div>`,"",100);
-  $("#btnRetry").onclick=()=>finish(status,reason,level);
+function go(){S.pageT=Date.now();renderSurvey();syncJump();const m=$("#main");if(m)window.scrollTo({top:m.offsetTop-8,behavior:"auto"})}
+
+/* ================= toolbar ================= */
+function syncJump(){
+  const sel=$("#selJump");
+  sel.innerHTML=pagesOf().map((p,i)=>`<option value="${i}">${i+1}. ${esc(p.label)}</option>`).join("")+`<option value="end">Trang kết thúc</option>`;
+  sel.value=S.status?(S.status.kind==="end"?"end":""):String(S.idx);
 }
-function done(status){
-  const R=CFG.REDIRECT||{};
-  const url=status==="complete"||status==="withdrawn"?R.complete:status==="quotafull"?(R.quotafull||R.screenout):R.screenout;
-  const testInfo=TEST?`<p class="rnote" style="display:block">Chế độ thử: không gửi lên DataPipe. Đây là file CSV sẽ được lưu${url?"; link chuyển về panel: "+esc(url.replace("{PID}",PID)):""}.</p><pre class="csv">${esc(S.lastCSV||"")}</pre>`:"";
-  if(url&&!TEST){location.href=url.replace(/\{PID\}/g,encodeURIComponent(PID));return}
-  const code=String(CFG.COMPLETION_CODE||"").trim();
-  let msg;
-  if(status==="complete"||status==="withdrawn")msg=`<h2 class="pt">Cảm ơn bạn đã hoàn thành khảo sát!</h2><p class="lead">Câu trả lời của bạn đã được ghi lại.${code?` Mã hoàn thành của bạn: <b>${esc(code)}</b>.`:""} Nếu có thắc mắc, vui lòng liên hệ ${cfgv("RESEARCHER")}, ${cfgv("EMAIL")}.</p>`;
-  else if(status==="declined")msg=`<h2 class="pt">Cảm ơn bạn.</h2><p class="lead">Bạn đã chọn không tham gia khảo sát.</p>`;
-  else if(status==="quotafull")msg=`<h2 class="pt">Cảm ơn bạn đã dành thời gian!</h2><p class="lead">Khảo sát đã nhận đủ số người cho nhóm khách hàng của bạn.</p>`;
-  else msg=`<h2 class="pt">Cảm ơn bạn đã dành thời gian!</h2><p class="lead">Khảo sát này dành cho một nhóm khách hàng khác.</p>`;
-  shell(`<div class="statusbox">${msg}${testInfo}</div>`,"",100);
+function condSelect(id,label,key,opts){
+  return `<label class="fld" for="${id}">${label} <select id="${id}" data-cond="${key}">${opts.map(([v,l])=>`<option value="${v}"${S.cond[key]===v?" selected":""}>${l}</option>`).join("")}</select></label>`;
+}
+function renderConds(){
+  const box=$("#condBox");
+  if(S.study===1){box.innerHTML="";return}
+  const R=["r","Ngẫu nhiên"];
+  box.innerHTML=condSelect("cInteg","Tích hợp","INTEG",[R,["0","Thấp"],["1","Cao"]])+
+    (S.study===2
+      ?condSelect("cPers","Cá nhân hóa","PERS",[R,["0","Thấp"],["1","Cao"]])
+      :condSelect("cBlock","Dòng nêu nguồn","BLOCK",[R,["0","Không nêu"],["1","Nêu rõ"]])+condSelect("cProf","Hồ sơ","PROFILE",[R,["0","X"],["1","Y"]])+condSelect("cOrder","Thứ tự","ORDER",[R,["1","PPV trước"],["2","CRP trước"]]));
+}
+function updateChips(){
+  const chip=$("#cellChip");
+  if(S.study===1){chip.hidden=!S.emb.RETAILER;if(S.emb.RETAILER)chip.textContent=`RETAILER = ${S.emb.RETAILER} · CATEGORY = ${S.emb.CATEGORY}`;return}
+  if(S.emb.INTEG==null){chip.hidden=false;chip.textContent="Chưa chia nhóm";return}
+  chip.hidden=false;
+  chip.textContent=S.study===2
+    ?`Nhóm ${S.emb.GROUP}/4 · INTEG ${S.emb.INTEG} · PERS ${S.emb.PERS} · hồ sơ cố định X · ORDER CRP→PPV`
+    :`Nhóm ${S.emb.GROUP} · ô ${S.emb.CELL} · INTEG ${S.emb.INTEG} · BLOCK ${S.emb.BLOCK} · PROFILE ${S.emb.PROFILE} · ORDER ${S.emb.ORDER}`;
+}
+function setStudy(n){
+  S=newState(n,S);
+  document.querySelectorAll("#studySeg button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.study===n)));
+  renderConds();syncJump();if(view==="survey")renderSurvey();
+}
+function setView(v){
+  view=v;
+  document.querySelectorAll("#viewSeg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===v)));
+  $("#ctlRow").hidden=v!=="survey";$("#optRow").hidden=v!=="survey";
+  if(v==="survey")renderSurvey();else renderGallery();
+}
+function renderGallery(exportMode){
+  clearInterval(timerId);
+  const G=[
+    ["IMG_GOIY_X",appScreen({list:"X",goiy:true}),"Study 2 · Cá nhân hóa cao: sản phẩm phù hợp với hồ sơ X."],
+    ["IMG_BANCHAY_Y",appScreen({list:"Y",goiy:false}),"Study 2 · Cá nhân hóa thấp: danh sách đồ ăn sáng bán chạy."]
+  ];
+  const cards=G.map(([n,h,u])=>`<figure class="gcard" id="g-${n}" style="margin:0"><div class="stimwrap">${exportMode?`<div class="shot" id="shot-${n}">${h}</div>`:fit(h,300)}</div><figcaption><div class="fn">${n}.png</div><div class="use">${u}</div></figcaption></figure>`).join("");
+  const k2=[["K2_THAP",k2Card(0),"Study 2 · Tích hợp dịch vụ thấp."],["K2_CAO",k2Card(1),"Study 2 · Tích hợp dịch vụ cao."]]
+    .map(([n,h,u])=>`<figure class="gcard wide" style="margin:0"><div class="stimwrap"><div class="shot" id="shot-${n}" style="max-width:100%">${h}</div></div><figcaption><div class="fn">${n}.png</div><div class="use">${u}</div></figcaption></figure>`).join("");
+  $("#main").innerHTML=`<div class="gal${exportMode?" export":""}"><div class="gal-head"><h1>Ảnh kích thích · Study 2</h1><p>Chỉ gồm các ảnh dùng trong thí nghiệm Study 2. Thương hiệu, bao bì và sản phẩm đều là hình minh họa. Giá cần được pretest để bảo đảm tương đương giữa hai danh sách.</p></div><div class="gal-grid">${cards}${k2}</div></div>`;
+  refit($("#main"));
 }
 
 /* ================= events ================= */
-document.addEventListener("click",e=>{const t=e.target.closest("button");if(t&&t.id==="btnNext")next()});
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button");if(!t)return;
+  if(t.id==="btnNext")next();
+  else if(t.id==="btnRetryAssignment"){S.status=null;S.busy=false;next()}
+  else if(t.id==="btnRetryUpload")submitCompletedStudy2();
+  else if(t.id==="btnAgain"||t.id==="btnReset"){S=newState(S.study,S);syncJump();setView("survey")}
+  else if(t.id==="btnData"){showData=!showData;t.textContent=showData?"Ẩn dữ liệu":"Xem dữ liệu ghi được";if(view==="survey")renderSurvey()}
+  else if(t.dataset.view)setView(t.dataset.view);
+  else if(t.dataset.study)setStudy(+t.dataset.study);
+});
 document.addEventListener("change",e=>{
-  const t=e.target;if(!$("#main").contains(t))return;
-  if(t.type==="radio")S.ans[t.name]=+t.value;
+  const t=e.target;
+  if(t.id==="selJump"){
+    const v=t.value;
+    if(v==="end"){S.status={kind:"end"};}
+    else{S.status=null;S.idx=+v;
+      if(S.study!==1&&S.emb.INTEG==null&&pagesOf().findIndex(p=>p.id==="k1")<=S.idx)assign(S);}
+    go();return;
+  }
+  if(t.dataset.cond){
+    const k=t.dataset.cond;S.cond[k]=t.value;
+    if(S.emb.INTEG!=null&&t.value!=="r"){
+      const key=k==="ORDER"?"ORDER":k;S.emb[key]=+t.value;cellUpdate(S);
+    }
+    if(view==="survey")renderSurvey();return;
+  }
+  if(t.id==="tgCodes"){document.body.classList.toggle("show-codes",t.checked);return}
+  if(t.id==="tgTimer"){S.flags.noTimer=t.checked;if(view==="survey")renderSurvey();return}
+  if(t.id==="tgSkip"){S.flags.allowSkip=t.checked;return}
+  if(t.id==="tgShuffle"){S.flags.shuffle=t.checked;S.order={};if(view==="survey")renderSurvey();return}
+  if(!$("#main").contains(t))return;
+  if(t.type==="radio"){S.ans[t.name]=+t.value}
   else if(t.type==="checkbox"&&t.dataset.multi){
-    S.ans[t.name]=t.checked?1:0;const box=t.closest(".list");
-    if(t.checked)box.querySelectorAll('input[type="checkbox"]').forEach(o=>{if(o!==t&&(t.dataset.excl==="1"||o.dataset.excl==="1")){o.checked=false;S.ans[o.name]=0}});
+    const c=t.dataset.multi;S.ans[t.name]=t.checked?1:0;
+    const box=t.closest(".list");
+    if(t.checked){box.querySelectorAll('input[type="checkbox"]').forEach(o=>{if(o!==t&&(t.dataset.excl==="1"||o.dataset.excl==="1")){o.checked=false;S.ans[o.name]=0}})}
+    /* store unchecked options as 0 so every option has a code */
     box.querySelectorAll('input[type="checkbox"]').forEach(o=>{if(S.ans[o.name]===undefined)S.ans[o.name]=o.checked?1:0});
-  }else if(t.type==="number")S.ans[t.name]=t.value===""?undefined:+t.value;
+  }
+  else if(t.type==="number"){S.ans[t.name]=t.value===""?undefined:+t.value}
   const f=t.closest(".q");if(f)f.classList.remove("err");
+  if(showData)refreshData();
 });
 document.addEventListener("input",e=>{
   const t=e.target;if(!$("#main").contains(t))return;
-  if(t.tagName==="TEXTAREA"||t.type==="text"){S.ans[t.name]=t.value;
-    if(t.classList.contains("othr")){const base=t.name.replace(/_TEXT$/,"");document.querySelectorAll(`input[name="${base}"]`).forEach(r=>{if(r.closest("label").contains(t)){r.checked=true;S.ans[base]=+r.value}})}
+  if(t.tagName==="TEXTAREA"||(t.type==="text")){S.ans[t.name]=t.value;
+    if(t.classList.contains("othr")){const base=t.name.replace(/_TEXT$/,"");const radios=document.querySelectorAll(`input[name="${base}"]`);radios.forEach(r=>{if(r.closest("label").contains(t)){r.checked=true;S.ans[base]=+r.value}})}
     const f=t.closest(".q");if(f)f.classList.remove("err")}
-  else if(t.type==="number")S.ans[t.name]=t.value===""?undefined:+t.value;
+  else if(t.type==="number"){S.ans[t.name]=t.value===""?undefined:+t.value}
 });
-window.addEventListener("beforeunload",e=>{if(!S.finished&&S.idx>0&&!TEST){e.preventDefault();e.returnValue=""}});
+function refreshData(){const w=document.querySelector(".datawrap");if(w)w.outerHTML=dataPanel()}
 let rT;window.addEventListener("resize",()=>{clearTimeout(rT);rT=setTimeout(()=>refit(document),80)});
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>refit(document));
 
 /* ================= boot ================= */
-if(!PAGES.length){shell(`<div class="statusbox"><h2 class="pt">Link khảo sát chưa đúng</h2><p class="lead">Vui lòng kiểm tra lại đường link bạn nhận được.</p></div>`,"",0);return}
-if(!TEST&&!DP_ID){shell(`<div class="statusbox"><h2 class="pt">Khảo sát chưa mở</h2><p class="lead">Khảo sát này chưa sẵn sàng nhận câu trả lời. Vui lòng quay lại sau.</p><p class="rnote" style="display:block">Thiếu mã DataPipe cho "${esc(DP_KEY)}" trong config.js.</p></div>`,"",0);return}
-let doneBefore=null;try{doneBefore=localStorage.getItem(DONE_KEY)}catch(e){}
-if(doneBefore&&!TEST){shell(`<div class="statusbox"><h2 class="pt">Bạn đã tham gia khảo sát này</h2><p class="lead">Thiết bị này đã gửi câu trả lời cho khảo sát. Cảm ơn bạn!</p></div>`,"",100);return}
-render();
+S=newState(2);
+renderConds();syncJump();
+if(location.hash==="#export"){document.documentElement.classList.add("export-mode");renderGallery(true)}else{renderSurvey()}
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>refit(document));
 })();
 </script>
-</body>
-</html>
+
+</body></html>
